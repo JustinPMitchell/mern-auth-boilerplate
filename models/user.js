@@ -23,19 +23,16 @@ var userSchema = new mongoose.Schema({
   },
   height: {
     type: String,
-    required: true,
     minlength: 8,
     maxlength: 99
   },
   weight: {
     type: String,
-    required: true,
     minlength: 8,
     maxlength: 99
   },   
   gender: {
     type: String,
-    required: true,
     minlength: 8,
     maxlength: 99
   }
