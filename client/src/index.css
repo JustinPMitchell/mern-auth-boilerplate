@@ -3,3 +3,54 @@ body {
   padding: 0;
   font-family: sans-serif;
 }
+/* start meal component */
+.meal-item{
+  width: 99%;
+  border: 1px solid grey;
+  display: inline-block;
+  height: 15vmax;
+  position: relative;
+  margin-top: 3em;
+}
+.meal-date{
+  display: inline-block;
+  position: absolute;
+  left: 2vmax;
+  height: 10vmax;
+  width: 10vmax;
+  top: 2.5vmax;
+  border: 1px solid grey;
+}
+.meal-title{
+  display: inline-block;
+  width: 54vw;
+  height: 100%;
+  border: 1px solid grey;
+  position: relative;
+  left: 0.25em;
+}
+.meal-description-wrapper{
+  display: inline-block;
+  height: 100%;
+  right: 0;
+  position: absolute;
+  width: 11vmax;
+  border-left: 1px solid grey;
+}
+.save-meal-btn{
+  border: none;
+  width: 100%;
+  background: transparent;
+  font-size: 2vmax;
+  border-bottom: 1px solid grey;
+  position: relative;
+  height: 3vmax;
+}
+.meal-description{
+  height: 12vmax;
+  margin: 0;
+  position: relative;
+  font-size: 1.5vmax;
+  overflow: scroll;
+}
+/* end meal component */

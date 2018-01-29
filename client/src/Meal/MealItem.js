@@ -7,7 +7,6 @@ class MealItem extends Component {
   render() {
     return (
       <div className="meal-item">
-        <h1>Meal Item Coming Soon</h1>
         <MealDate />
         <MealTitle />
         <MealDescription />
