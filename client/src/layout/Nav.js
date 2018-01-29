@@ -10,6 +10,7 @@ class Nav extends Component {
       links = (
         <span>
           <Link to="/profile">Profile</Link>
+          <Link to="/settings">Settings</Link>
           <Logout updateUser={this.props.updateUser} />
         </span>);
     }
@@ -18,6 +19,7 @@ class Nav extends Component {
         <span>
           <Link to="/login">Login</Link>
           <Link to="/signup">Sign Up</Link>
+          <Link to="/settings">Settings</Link>
         </span>);
     }
 
