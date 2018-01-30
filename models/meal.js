@@ -1,20 +1,23 @@
 var mongoose = require('mongoose');
 // import User from './user.js';
 
-
 var mealSchema = new mongoose.Schema({
-  name: {
+  //takes in starting period
+  start: [{
     type: String,
     required: false
-  },
-  calories: {
+  }],
+  //takes in ending period
+  end: [{
     type: String,
     required: false
-  },
-  protein: {
+  }],
+  //takes in the entire string of 21 meals
+  mealdata: [{
     type: String,
     required: false
-  },
+  }],
+  //takes in current user
   user: [{
     type: String,
     required: false
@@ -26,9 +29,9 @@ mealSchema.set('toJSON', {
   transform: function(doc, ret, options) {
     var returnJson = {
       id: ret._id,
-      name: ret.name,
-      calories: ret.calories,
-      protein: ret.protein,
+      start: ret.start,
+      end: ret.end,
+      mealdata: ret.mealdata,
       user: ret.user
     };
     return returnJson;

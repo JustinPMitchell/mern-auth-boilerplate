@@ -39,10 +39,11 @@ class Profile extends Component {
           <table class="table table-stripe">
             <thead>
               <tr>
-                <th>Name</th>
-                <th>Calories</th>
-                <th>Protein</th>
+                <th>Start</th>
+                <th>End</th>
+                <th>Metadata</th>
                 <th>Delete</th>
+                <th>Edit</th>
               </tr>
             </thead>
             <tbody>
@@ -53,9 +54,9 @@ class Profile extends Component {
                   console.log('this is the id from the user ', that.props.user.id);
                   return (
                     <tr>
-                      <td>{meal.name}</td>
-                      <td>{meal.calories}</td>
-                      <td>{meal.protein}</td>
+                      <td>{meal.start}</td>
+                      <td>{meal.end}</td>
+                      <td>{meal.mealdata}</td>
                       <td><button onClick={that.delete.bind(that, meal.id)} class="btn btn-danger">Delete</button></td>
                       <td><Link to={`/edit/${meal.id}`} class="btn btn-success">Edit</Link>&nbsp;</td>
                     </tr>

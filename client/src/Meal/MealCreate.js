@@ -7,33 +7,34 @@ class MealCreate extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      name: '',
-      calories: '',
-      protein: '',
+      start: '',
+      end: '',
+      mealdata: '',
       user: this.props.user.email, //change to id?
       redirect: false
     }
   }
 
-  handleNameChange = (e) => {
-    this.setState({name: e.target.value})
+  handleStartChange = (e) => {
+    this.setState({start: e.target.value})
   }
-  handleCaloriesChange = (e) => {
-    this.setState({calories: e.target.value})
+  handleEndChange = (e) => {
+    this.setState({end: e.target.value})
   }
-  handleProteinChange = (e) => {
-    this.setState({protein: e.target.value})
+  handleMealDataChange = (e) => {
+    this.setState({mealdata: e.target.value})
   }
   handleUserChange = (e) => {
     this.setState({user: e.target.value})
   }
 
+
   handleSubmit = (e) => {
     e.preventDefault();
     axios.post('/api/meal', {
-      name: this.state.name,
-      calories: this.state.calories,
-      protein: this.state.protein,
+      start: this.state.start,
+      end: this.state.end,
+      mealdata: this.state.mealdata,
       user: this.state.user
     }).then(() => this.setState({ redirect: true }))
     .catch(error => {
@@ -52,32 +53,32 @@ class MealCreate extends Component {
     let form = '';
       form = (<form onSubmit={this.handleSubmit}>
                 <div>
-                  <input name="Name"
-                       placeholder="What is the name of the food?"
-                       value={this.state.name}
-                       onChange={this.handleNameChange}
+                  <input name="start"
+                       placeholder="Meal plan start"
+                       value={this.state.start}
+                       onChange={this.handleStartChange}
                   />
                 </div>
                 <div>
-                  <input name="Calories"
-                       placeholder="What is the calorie count?"
-                       value={this.state.calories}
-                       onChange={this.handleCaloriesChange} />
-                 </div>
-                 <div>
-                  <input name="Protein"
-                     placeholder="What is the protein count?"
-                     value={this.state.protein}
-                     onChange={this.handleProteinChange} />
-                 </div>
-                 <div>
+                  <input name="end"
+                       placeholder="Meal plan end"
+                       value={this.state.end}
+                       onChange={this.handleEndChange}
+                  />
+                </div>
+                <div>
+                  <input name="mealdata"
+                       placeholder="mealdata"
+                       value={this.state.mealdata}
+                       onChange={this.handleMealDataChange}
+                  />
+                </div>    
+                <div>
                   <input type="hidden"
-                     name="User"
-                     value={this.props.user._id} />
-                 </div>
-                 <div>
-                 </div>
-                 <input type="submit" value="Add Meal" className="btn-primary" />
+                    name="User"
+                    value={this.props.user._id} />
+                </div>
+                <input type="submit" value="Add Meal" className="btn-primary" />
               </form>);
     return (
       <div>
