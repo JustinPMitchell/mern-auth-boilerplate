@@ -1,9 +1,12 @@
 import React, { Component } from 'react';
+import MealWrapper from './Meal/MealWrapper.js';
 
 class Home extends Component {
   render(){
     return (
-        <p>This is a home page. You probably ought to write something here</p>
+      <MealWrapper mealtype="Breakfast" />
+      <MealWrapper mealtype="Lunch" />
+      <MealWrapper mealtype="Dinner" />
       );
   }
 }

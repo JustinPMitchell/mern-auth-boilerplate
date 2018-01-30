@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
-import MealWrapper from './Meal/MealWrapper.js';
 
 class Profile extends Component {
   constructor(props){
@@ -65,9 +64,6 @@ class Profile extends Component {
               })}
             </tbody>
           </table>
-          <MealWrapper mealtype="Breakfast" />
-          <MealWrapper mealtype="Lunch" />
-          <MealWrapper mealtype="Dinner" />
         </div>);
     }
     else {
