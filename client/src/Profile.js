@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import MealItem from './Meal/MealItem.js';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
+import MealWrapper from './Meal/MealWrapper.js';
 
 class Profile extends Component {
   constructor(props){
@@ -37,7 +37,6 @@ class Profile extends Component {
           <p>this is height {this.props.user.height}</p>
           <p>wow you should really loose some weight {this.props.user.weight}</p>
           <p>this is sex {this.props.user.sex}</p>
-          <MealItem />
           <table class="table table-stripe">
             <thead>
               <tr>
@@ -66,6 +65,9 @@ class Profile extends Component {
               })}
             </tbody>
           </table>
+          <MealWrapper mealtype="Breakfast" />
+          <MealWrapper mealtype="Lunch" />
+          <MealWrapper mealtype="Dinner" />
         </div>);
     }
     else {

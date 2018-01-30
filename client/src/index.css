@@ -3,38 +3,84 @@ body {
   padding: 0;
   font-family: sans-serif;
 }
+.no-flash{
+  display: none;
+}
+.footer{
+  position: absolute;
+  bottom:0;
+}
+/*start nav */
+.default-nav{
+  display: none;
+  width:100%;
+}
+.mobile-nav{
+  display: block;
+  width: 100%;
+  height: 2em;
+  text-align: center;
+}
+.mobile-nav-item-wrapper{
+  list-style: none;
+  display: inline-block;
+  width:100%;
+  height:100%;
+  margin:0;
+  padding: 0;
+}
+.mobile-nav-item{
+  display: inline-block;
+}
+.mobile-nav-item h3{
+  font-size: .75em;
+}
+.mobile-nav-item h1{
+  font-size: 1em;
+  margin:0px 15vw;
+}
+/* end nav */
 /* start meal component */
+.meal-wrapper{
+
+}
+.meal-type-label{
+  margin:1em 0;
+  text-align: center;
+  font-size:1.5em;
+}
 .meal-item{
   width: 99%;
   border: 1px solid grey;
   display: inline-block;
   height: 15vmax;
   position: relative;
-  margin-top: 3em;
+  margin-top: 0em;
+  overflow: hidden;
 }
 .meal-date{
   display: inline-block;
   position: absolute;
   left: 2vmax;
   height: 10vmax;
-  width: 10vmax;
+  width: 17%;
   top: 2.5vmax;
   border: 1px solid grey;
 }
 .meal-title{
   display: inline-block;
-  width: 54vw;
+  width: 60%;
   height: 100%;
   border: 1px solid grey;
   position: relative;
-  left: 0.25em;
+  left: 21%;
 }
 .meal-description-wrapper{
   display: inline-block;
   height: 100%;
   right: 0;
   position: absolute;
-  width: 11vmax;
+  width: 16%;
   border-left: 1px solid grey;
 }
 .save-meal-btn{
@@ -48,9 +94,42 @@ body {
 }
 .meal-description{
   height: 12vmax;
+  text-align: center;
   margin: 0;
   position: relative;
   font-size: 1.5vmax;
   overflow: scroll;
+  top:-1px;
 }
 /* end meal component */
+
+/* show desktop stuff */
+
+@media screen and (min-width: 550px) {
+  /*setting desktop stuff*/
+  .default-nav{
+    display: block;
+  }
+  /*removing mobile stuff for desktop view*/
+  .mobile-nav{
+    display: none;
+  }
+}
+/* show mobile stuff */
+@media screen and (max-width: 550px) {
+  /*removing desktop stuff*/
+
+  /*setting mobile stuff for desktop view*/
+  .meal-title{
+    left: 22%;
+  }
+
+  .meal-description-wrapper{
+    width:16%;
+  }
+  .meal-date{
+    width:15%;
+  }
+}
+
+
