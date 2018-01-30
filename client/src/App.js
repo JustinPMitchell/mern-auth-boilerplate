@@ -108,9 +108,7 @@ class App extends Component {
             </div>
           </div>
         </Router>
-        
         <Footer />
-        {this.state.dateIndex}
       </div>
     );
   }
