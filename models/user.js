@@ -23,18 +23,15 @@ var userSchema = new mongoose.Schema({
   },
   height: {
     type: String,
-    minlength: 8,
-    maxlength: 99
+    required: true
   },
   weight: {
     type: String,
-    minlength: 8,
-    maxlength: 99
+    required: true
   },   
-  gender: {
+  sex: {
     type: String,
-    minlength: 8,
-    maxlength: 99
+    required: true
   }
 });
 
@@ -44,7 +41,10 @@ userSchema.set('toJSON', {
     var returnJson = {
       id: ret._id,
       email: ret.email,
-      name: ret.name
+      name: ret.name,
+      height: ret.height,
+      weight: ret.weight,
+      sex: ret.sex
     };
     return returnJson;
   }
