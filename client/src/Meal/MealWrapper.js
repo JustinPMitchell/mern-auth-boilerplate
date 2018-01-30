@@ -5,7 +5,7 @@ class MealWrapper extends Component {
     render() {
       return (
         <div className="meal-wrapper">
-            <h1 className="meal-type-label">{this.props.mealtype}</h1>
+            <h1 className="meal-type-label">{this.props.mealType}</h1>
             <MealItem />
         </div>
       );

@@ -15,7 +15,19 @@ class App extends Component {
   constructor(props){
     super(props);
     this.state = {
-      user: {}
+      user: {},
+      dates:[
+        "Sunday",
+        "Monday",
+        "Tuesday",
+        "Wednesday",
+        "Thursday",
+        "Friday",
+        "Saturday"
+      ],
+      dateIndex:(function(){
+        return new Date().getDay();
+      })()
     }
   }
   componentDidMount = () => {
@@ -67,16 +79,22 @@ class App extends Component {
       flashType: ''
     });
   }
-
+  setDateIndex = (d) => {
+    console.log("DAY INDEX IS  =",d);
+    let dIndex = this.state.dates.indexOf(d);
+    this.setState({
+      dateIndex:dIndex
+    });
+  }
   render() {
     return (
       <div className="App">
         <Router>
           <div>
-            <Nav user={this.state.user} updateUser={this.getUser} />
+            <Nav dates={this.state.dates} dateIndex={this.state.dateIndex} setDateIndex={this.setDateIndex} user={this.state.user} updateUser={this.getUser} />
             <div className="space">
               <Flash flashType={this.state.flashType} flash={this.state.flash} setFlash={this.setFlash} cancelFlash={this.cancelFlash} />
-              <Route exact path="/" component={Home} />
+              <Route exact path="/" component={() => (<Home currentDate={this.state.dates[this.state.dateIndex]} />)} />
               <Route path="/login" component={
                 () => (<Login user={this.state.user} setFlash={this.setFlash} updateUser={this.getUser} />)} />
               <Route path="/signup" component={
@@ -91,7 +109,9 @@ class App extends Component {
             </div>
           </div>
         </Router>
+        
         <Footer />
+        {this.state.dateIndex}
       </div>
     );
   }
