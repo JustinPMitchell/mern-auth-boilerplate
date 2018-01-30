@@ -10,7 +10,7 @@ class MealCreate extends Component {
       name: '',
       calories: '',
       protein: '',
-      user: '',
+      user: this.props.user.name, //change to id?
       redirect: false
     }
   }
@@ -45,9 +45,9 @@ class MealCreate extends Component {
   render() {
     const { redirect } = this.state;
 
-   if (redirect) {
-     return <Redirect to='/profile'/>;
-   }
+    if (redirect) {
+      return <Redirect to='/profile' />;
+    }
 
     let form = '';
       form = (<form onSubmit={this.handleSubmit}>
@@ -71,10 +71,9 @@ class MealCreate extends Component {
                      onChange={this.handleProteinChange} />
                  </div>
                  <div>
-                  <input name="User"
-                     placeholder="Choose a user"
-                     value={this.state.user}
-                     onChange={this.handleUserChange} />
+                  <input type="hidden"
+                     name="User"
+                     value={this.props.user.name} />
                  </div>
                  <div>
                  </div>
