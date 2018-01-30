@@ -2,71 +2,78 @@ import React, { Component } from 'react';
 import axios from 'axios';
 
 
+
+
 class Settings extends Component {
 
   constructor(props) {
     super(props)
     this.state = {
-      height: '',
-      weight: '',
-      sex: ''
+      user: {}
     }
   }
 
-  handleHeightChange = (e) => {
-    this.setState({height: e.target.value});
+  componentDidMount() {
+    axios.get('/settings/'+this.props.user.id)
+      .then(res => {
+        this.setState({ user: res.data });
+        console.log(this.state.user);
+      });
   }
 
-  handleWeightChange = (e) => {
-    this.setState({weight: e.target.value});
+  onChange = (e) => {
+    const state = this.state.user
+    state[e.target.name] = e.target.value;
+    this.setState({user:state});
   }
 
-  handleSexChange = (e) => {
-    this.setState({sex: e.target.value});
-  }
 
-  handleSubmit = (e) => {
-    e.preventDefault();
-    axios.post('/auth/login', {
-      height: this.state.height,
-      weight: this.state.weight,
-      sex: this.state.sex
-    }).then((result) => {
-      localStorage.setItem('mernToken', result.data.token);
-      this.setState({ success: true });
-      this.props.updateUser();
-    }).catch((error) => {
-      console.log('error returned', error.response.data);
-      this.props.setFlash('error', error.response.status + ': ' + (error.response.data && error.response.data.error ? error.response.data.message : error.response.statusText));
-    });
-  }
+
+    onSubmit = (e) => {
+      e.preventDefault();
+
+      const { height, weight, sex, password } = this.state.user;
+
+      axios.put('/settings/'+this.props.user.id, { height, weight, sex, password })
+      .then((result) => {
+        this.props.history.push("/profile")
+      });
+    }
 
 
   render() {
     let form = '';
 
-    form = (<form onSubmit={this.handleSubmit}>
+    form = (<form onSubmit={this.onSubmit}>
               <div>
                 <input name="height"
                      placeholder="Enter your height"
-                     value={this.state.height}
-                     onChange={this.handleHeightChange}
+                     value={this.state.user.height}
+                     onChange={this.onChange}
                 />
               </div>
               <div>
                 <input name="weight"
                      placeholder="Enter your weight"
-                     type="password"
-                     value={this.state.weight}
-                     onChange={this.handleWeightChange}
-                />
-                <input name="sex"
-                     placeholder="Enter your sex"
-                     type="password"
-                     value={this.state.sex}
-                     onChange={this.handleSexChange}
+                     value={this.state.user.weight}
+                     onChange={this.onChange}
                 />
               </div>
+              <div>
+                <input name="sex"
+                     placeholder="Enter your sex"
+                     value={this.state.user.sex}
+                     onChange={this.onChange}
+                />
+              </div>
+              <div>
+                <input name="password"
+                     placeholder="Enter your password"
+                     value={this.state.user.password}
+                     onChange={this.onChange}
+                />
+              </div>
+
               <input type="submit" value="Update Settings" className="btn-primary" />
             </form>);
 
