@@ -16,9 +16,11 @@ class Profile extends Component {
         this.setState({ meals: res.data });
         console.log(this.state.meals);
       })
+    var that = this;
   }
 
   render(){
+    var that = this;
     if(this.props.user && this.props.user.name){
       return (<div>
           <h2>HELLO AGAIN {this.props.user.name}!</h2>
@@ -36,13 +38,17 @@ class Profile extends Component {
               </tr>
             </thead>
             <tbody>
-              {this.state.meals.map(meal =>
-                <tr>
-                  <td>{meal.name}</td>
-                  <td>{meal.calories}</td>
-                  <td>{meal.protein}</td>
-                </tr>
-              )}
+              {this.state.meals.map(meal => {
+                if(meal.user == that.props.user.email) {
+                  return (
+                    <tr>
+                      <td>{meal.name}</td>
+                      <td>{meal.calories}</td>
+                      <td>{meal.protein}</td>
+                    </tr>
+                  )
+                }
+              })}
             </tbody>
           </table>
         </div>);

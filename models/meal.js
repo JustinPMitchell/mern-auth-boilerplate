@@ -1,6 +1,7 @@
 var mongoose = require('mongoose');
 // import User from './user.js';
 
+
 var mealSchema = new mongoose.Schema({
   name: {
     type: String,

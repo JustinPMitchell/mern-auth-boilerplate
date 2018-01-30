@@ -32,7 +32,11 @@ var userSchema = new mongoose.Schema({
   sex: {
     type: String,
     required: true
-  }
+  },
+  meals: [{
+    type: mongoose.Schema.Types.ObjectId,  //REFERENCING :D
+    ref: 'Meal'
+  }]
 });
 
 // Override 'toJSON' to prevent the password from being returned with the user
@@ -44,7 +48,8 @@ userSchema.set('toJSON', {
       name: ret.name,
       height: ret.height,
       weight: ret.weight,
-      sex: ret.sex
+      sex: ret.sex,
+      meals: ret.meals
     };
     return returnJson;
   }

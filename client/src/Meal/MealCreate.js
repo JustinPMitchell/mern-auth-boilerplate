@@ -10,7 +10,7 @@ class MealCreate extends Component {
       name: '',
       calories: '',
       protein: '',
-      user: this.props.user.name, //change to id?
+      user: this.props.user.email, //change to id?
       redirect: false
     }
   }
@@ -73,7 +73,7 @@ class MealCreate extends Component {
                  <div>
                   <input type="hidden"
                      name="User"
-                     value={this.props.user.name} />
+                     value={this.props.user._id} />
                  </div>
                  <div>
                  </div>

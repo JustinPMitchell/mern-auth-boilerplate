@@ -22,6 +22,7 @@ router.get('/:id', function(req, res, next) {
 /* SAVE MEAL */
 router.post('/', function(req, res, next) {
   Meal.create(req.body, function (err, post) {
+    console.log('this is the name of the person', req.body);
     if (err) return next(err);
     res.json(post);
   });
