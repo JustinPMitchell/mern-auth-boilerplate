@@ -23,19 +23,20 @@ var userSchema = new mongoose.Schema({
   },
   height: {
     type: String,
-    minlength: 8,
-    maxlength: 99
+    required: true
   },
   weight: {
     type: String,
-    minlength: 8,
-    maxlength: 99
+    required: true
   },   
-  gender: {
+  sex: {
     type: String,
-    minlength: 8,
-    maxlength: 99
-  }
+    required: true
+  },
+  meals: [{
+    type: mongoose.Schema.Types.ObjectId,  //REFERENCING :D
+    ref: 'Meal'
+  }]
 });
 
 // Override 'toJSON' to prevent the password from being returned with the user
@@ -44,7 +45,11 @@ userSchema.set('toJSON', {
     var returnJson = {
       id: ret._id,
       email: ret.email,
-      name: ret.name
+      name: ret.name,
+      height: ret.height,
+      weight: ret.weight,
+      sex: ret.sex,
+      meals: ret.meals
     };
     return returnJson;
   }

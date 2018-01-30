@@ -8,7 +8,10 @@ class Signup extends Component {
     this.state = {
       name: '',
       email: '',
-      password: ''
+      password: '',
+      height: '',
+      weight: '',
+      sex: ''
     }
   }
 
@@ -21,13 +24,25 @@ class Signup extends Component {
   handlePasswordChange = (e) => {
     this.setState({password: e.target.value})
   }
+  handleHeightChange = (e) => {
+    this.setState({height: e.target.value})
+  }
+  handleWeightChange = (e) => {
+    this.setState({weight: e.target.value})
+  }
+  handleSexChange = (e) => {
+    this.setState({sex: e.target.value})
+  }
 
   handleSubmit = (e) => {
     e.preventDefault();
     axios.post('/auth/signup', {
       name: this.state.name,
       email: this.state.email,
-      password: this.state.password
+      password: this.state.password,
+      height: this.state.height,
+      weight: this.state.weight,
+      sex: this.state.sex
     }).then(result => {
       localStorage.setItem('mernToken', result.data.token);
       this.props.updateUser();
@@ -56,13 +71,34 @@ class Signup extends Component {
                        placeholder="What is your email?"
                        value={this.state.email}
                        onChange={this.handleEmailChange} />
-               </div>
-               <div>
+                 </div>
+                 <div>
                   <input name="Password"
                      placeholder="Choose a password"
                      type="password"
                      value={this.state.password}
                      onChange={this.handlePasswordChange} />
+                 </div>
+                 <div>
+                  <input name="Height"
+                     placeholder="Choose a height"
+                     type="height"
+                     value={this.state.height}
+                     onChange={this.handleHeightChange} />
+                 </div>
+                 <div>
+                  <input name="Weight"
+                     placeholder="Choose a weight"
+                     type="weight"
+                     value={this.state.weight}
+                     onChange={this.handleWeightChange} />
+                 </div>
+                 <div>
+                  <input name="Sex"
+                     placeholder="Choose a sex"
+                     type="sex"
+                     value={this.state.sex}
+                     onChange={this.handleSexChange} />
                  </div>
                  <input type="submit" value="Sign up!" className="btn-primary" />
               </form>);

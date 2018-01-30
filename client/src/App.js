@@ -9,6 +9,7 @@ import Login from './auth/Login.js';
 import Profile from './Profile.js';
 import Signup from './auth/Signup.js';
 import Settings from './Settings.js';
+import MealCreate from './Meal/MealCreate.js';
 
 class App extends Component {
   constructor(props){
@@ -84,6 +85,9 @@ class App extends Component {
                 () => (<Profile user={this.state.user} setFlash={this.setFlash} />)} />
               <Route path="/settings" component={
                 () => (<Settings user={this.state.user} setFlash={this.setFlash} />)} />
+              <Route path="/mealcreate" component={
+                () => (<MealCreate user={this.state.user} setFlash={this.setFlash} />)} />
+              }
             </div>
           </div>
         </Router>
