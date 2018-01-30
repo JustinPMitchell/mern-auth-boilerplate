@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import MealItem from './Meal/MealItem.js';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 
 class Profile extends Component {
   constructor(props){
@@ -19,6 +20,14 @@ class Profile extends Component {
     var that = this;
   }
 
+  delete(id){
+    console.log(id);
+    axios.delete('/api/meal/'+id)
+      .then((result) => {
+
+      });
+  }
+
   render(){
     var that = this;
     if(this.props.user && this.props.user.name){
@@ -35,16 +44,22 @@ class Profile extends Component {
                 <th>Name</th>
                 <th>Calories</th>
                 <th>Protein</th>
+                <th>Delete</th>
               </tr>
             </thead>
             <tbody>
               {this.state.meals.map(meal => {
                 if(meal.user == that.props.user.email) {
+                  console.log('this is the name of the meal ', that.state.meals[0].name);
+                  console.log('this is the id from the meal ', meal.id);
+                  console.log('this is the id from the user ', that.props.user.id);
                   return (
                     <tr>
                       <td>{meal.name}</td>
                       <td>{meal.calories}</td>
                       <td>{meal.protein}</td>
+                      <td><button onClick={that.delete.bind(that, meal.id)} class="btn btn-danger">Delete</button></td>
+                      <td><Link to={`/edit/${meal.id}`} class="btn btn-success">Edit</Link>&nbsp;</td>
                     </tr>
                   )
                 }

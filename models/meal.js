@@ -25,6 +25,7 @@ var mealSchema = new mongoose.Schema({
 mealSchema.set('toJSON', {
   transform: function(doc, ret, options) {
     var returnJson = {
+      id: ret._id,
       name: ret.name,
       calories: ret.calories,
       protein: ret.protein,
