@@ -20,6 +20,21 @@ var userSchema = new mongoose.Schema({
     required: true,
     minlength: 8,
     maxlength: 99
+  },
+  height: {
+    type: String,
+    minlength: 8,
+    maxlength: 99
+  },
+  weight: {
+    type: String,
+    minlength: 8,
+    maxlength: 99
+  },   
+  gender: {
+    type: String,
+    minlength: 8,
+    maxlength: 99
   }
 });
 
