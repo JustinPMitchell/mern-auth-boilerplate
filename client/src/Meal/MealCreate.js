@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 
 class MealCreate extends Component {
   constructor(props) {
@@ -9,7 +10,8 @@ class MealCreate extends Component {
       name: '',
       calories: '',
       protein: '',
-      user: ''
+      user: '',
+      redirect: false
     }
   }
 
@@ -33,15 +35,20 @@ class MealCreate extends Component {
       calories: this.state.calories,
       protein: this.state.protein,
       user: this.state.user
-    }).then(result => {
-      this.props.updateMeal();
-    }).catch(error => {
+    }).then(() => this.setState({ redirect: true }))
+    .catch(error => {
       console.log(error);
       this.props.setFlash('error', error.response.status + ': ' + (error.response.data && error.response.data.error ? error.response.data.message : error.response.statusText));
     })
   }
 
   render() {
+    const { redirect } = this.state;
+
+   if (redirect) {
+     return <Redirect to='/profile'/>;
+   }
+
     let form = '';
       form = (<form onSubmit={this.handleSubmit}>
                 <div>
