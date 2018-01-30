@@ -1,7 +1,23 @@
 import React, { Component } from 'react';
 import MealItem from './Meal/MealItem.js';
+import axios from 'axios';
 
 class Profile extends Component {
+  constructor(props){
+    super(props);
+    this.state = {
+      meals: []
+    }
+  }
+
+  componentDidMount = () => {
+    axios.get('/api/meal')
+      .then(res => {
+        this.setState({ meals: res.data });
+        console.log(this.state.meals);
+      })
+  }
+
   render(){
     if(this.props.user && this.props.user.name){
       return (<div>
@@ -11,6 +27,24 @@ class Profile extends Component {
           <p>wow you should really loose some weight {this.props.user.weight}</p>
           <p>this is sex {this.props.user.sex}</p>
           <MealItem />
+          <table class="table table-stripe">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Calories</th>
+                <th>Protein</th>
+              </tr>
+            </thead>
+            <tbody>
+              {this.state.meals.map(meal =>
+                <tr>
+                  <td>{meal.name}</td>
+                  <td>{meal.calories}</td>
+                  <td>{meal.protein}</td>
+                </tr>
+              )}
+            </tbody>
+          </table>
         </div>);
     }
     else {

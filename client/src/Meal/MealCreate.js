@@ -1,0 +1,84 @@
+import React, { Component } from 'react';
+import { Redirect } from 'react-router-dom';
+import axios from 'axios';
+
+class MealCreate extends Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      name: '',
+      calories: '',
+      protein: '',
+      user: ''
+    }
+  }
+
+  handleNameChange = (e) => {
+    this.setState({name: e.target.value})
+  }
+  handleCaloriesChange = (e) => {
+    this.setState({calories: e.target.value})
+  }
+  handleProteinChange = (e) => {
+    this.setState({protein: e.target.value})
+  }
+  handleUserChange = (e) => {
+    this.setState({user: e.target.value})
+  }
+
+  handleSubmit = (e) => {
+    e.preventDefault();
+    axios.post('/api/meal', {
+      name: this.state.name,
+      calories: this.state.calories,
+      protein: this.state.protein,
+      user: this.state.user
+    }).then(result => {
+      this.props.updateMeal();
+    }).catch(error => {
+      console.log(error);
+      this.props.setFlash('error', error.response.status + ': ' + (error.response.data && error.response.data.error ? error.response.data.message : error.response.statusText));
+    })
+  }
+
+  render() {
+    let form = '';
+      form = (<form onSubmit={this.handleSubmit}>
+                <div>
+                  <input name="Name"
+                       placeholder="What is the name of the food?"
+                       value={this.state.name}
+                       onChange={this.handleNameChange}
+                  />
+                </div>
+                <div>
+                  <input name="Calories"
+                       placeholder="What is the calorie count?"
+                       value={this.state.calories}
+                       onChange={this.handleCaloriesChange} />
+                 </div>
+                 <div>
+                  <input name="Protein"
+                     placeholder="What is the protein count?"
+                     value={this.state.protein}
+                     onChange={this.handleProteinChange} />
+                 </div>
+                 <div>
+                  <input name="User"
+                     placeholder="Choose a user"
+                     value={this.state.user}
+                     onChange={this.handleUserChange} />
+                 </div>
+                 <div>
+                 </div>
+                 <input type="submit" value="Add Meal" className="btn-primary" />
+              </form>);
+    return (
+      <div>
+        {form}
+      </div>
+    );
+  }
+}
+
+export default MealCreate;

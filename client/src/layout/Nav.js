@@ -10,6 +10,7 @@ class Nav extends Component {
         <span>
           <Link to="/profile">Profile</Link>
           <Link to="/settings">Settings</Link>
+          <Link to="/mealcreate">Create a New Meal</Link>
           <Logout updateUser={this.props.updateUser} />
         </span>);
     }
@@ -19,6 +20,7 @@ class Nav extends Component {
           <Link to="/login">Login</Link>
           <Link to="/signup">Sign Up</Link>
           <Link to="/settings">Settings</Link>
+          <Link to="/mealcreate">Create a New Meal</Link>
         </span>);
     }
 
