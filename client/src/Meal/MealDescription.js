@@ -9,7 +9,9 @@ class MealDescription extends Component {
           <input value="Save" type="submit" class="save-meal-btn" />
         </form>
         <p className="meal-description">
-          Lorem, ipsum dolor sit amet consectetur adipisicing elit. Alias aliquam, id impedit voluptas corrupti commodi numquam rerum natus veritatis temporibus hic aut libero expedita repellat qui ut delectus! Reprehenderit, ab!
+          Calories : {this.props.mealCal},
+          <br />
+          Ingredients : {this.props.mealIngredients}
         </p>
       </div>
     );

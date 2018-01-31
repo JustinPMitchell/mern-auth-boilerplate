@@ -1,3 +1,6 @@
+.App{
+  background-color:#fdfdfd;
+}
 body {
   margin: 0;
   padding: 0;
@@ -14,12 +17,19 @@ body {
 .default-nav{
   display: none;
   width:100%;
+  text-align: center;
+  margin: 1em 0;
+}
+.default-nav a{
+  padding: 2em;
 }
 .mobile-nav{
   display: block;
   width: 100%;
   height: 2em;
   text-align: center;
+  background-color:#bcbcbc33;
+  padding: 0 0 .3em 0;
 }
 .mobile-nav-item-wrapper{
   list-style: none;
@@ -31,6 +41,8 @@ body {
 }
 .mobile-nav-item{
   display: inline-block;
+  color:#424242;
+  font-family: 'Roboto', sans-serif;
 }
 .mobile-nav-item h3{
   font-size: .75em;
@@ -48,49 +60,59 @@ body {
   margin:1em 0;
   text-align: center;
   font-size:1.5em;
+  color:#5a5656;
+  font-weight: 300;
+  font-family: 'Roboto', sans-serif;
 }
 .meal-item{
   width: 99%;
-  border: 1px solid grey;
   display: inline-block;
   height: 15vmax;
   position: relative;
-  margin-top: 0em;
+  margin-top: 0;
+  font-family: 'Roboto', sans-serif;
   overflow: hidden;
 }
-.meal-date{
+.meal-img{
   display: inline-block;
   position: absolute;
-  left: 2vmax;
-  height: 10vmax;
-  width: 17%;
-  top: 2.5vmax;
-  border: 1px solid grey;
+  height: 100%;
+  width: 21%;
 }
-.meal-title{
+.meal-title-wrapper{
   display: inline-block;
   width: 60%;
   height: 100%;
-  border: 1px solid grey;
   position: relative;
   left: 21%;
+  background-color:#6caac72e;
+}
+.meal-title-wrapper h1{
+  font-weight: 200;
+  text-align: center;
+  position: relative;
+  margin: 0;
+  font-size: 3vmax;
 }
 .meal-description-wrapper{
   display: inline-block;
   height: 100%;
   right: 0;
   position: absolute;
-  width: 16%;
-  border-left: 1px solid grey;
+  width: 18%;
+  background-color: #cee8f5;
+}
+.meal-description-wrapper form{
+  overflow: hidden;
 }
 .save-meal-btn{
   border: none;
   width: 100%;
   background: transparent;
-  font-size: 2vmax;
-  border-bottom: 1px solid grey;
+  font-size: 4vw;
+  border-bottom: 1px solid #fff;
   position: relative;
-  height: 3vmax;
+  height: 100%;
 }
 .meal-description{
   height: 12vmax;
@@ -100,6 +122,18 @@ body {
   font-size: 1.5vmax;
   overflow: scroll;
   top:-1px;
+}
+
+.meal-info-btn , .change-meal-btn{
+  display: inline-block;
+  position: relative;
+  font-size: 2.5vw;
+  border: 1px solid #fff;
+  margin-left: .5em;
+  border-bottom: none;
+  bottom: -15vmin;
+  padding: 2%;
+  cursor: pointer;
 }
 /* end meal component */
 
@@ -120,16 +154,7 @@ body {
   /*removing desktop stuff*/
 
   /*setting mobile stuff for desktop view*/
-  .meal-title{
-    left: 22%;
-  }
 
-  .meal-description-wrapper{
-    width:16%;
-  }
-  .meal-date{
-    width:15%;
-  }
 }
 
 

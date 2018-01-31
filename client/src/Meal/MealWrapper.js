@@ -5,7 +5,7 @@ class MealWrapper extends Component {
       return (
         <div className="meal-wrapper">
             <h1 className="meal-type-label">{this.props.mealType}</h1>
-            <MealItem />
+            <MealItem mealName={this.props.mealName} mealCal={this.props.mealCal} mealIngredients={this.props.mealIngredients}/>
         </div>
       );
     }

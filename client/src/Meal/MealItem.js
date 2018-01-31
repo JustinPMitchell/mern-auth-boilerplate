@@ -8,8 +8,8 @@ class MealItem extends Component {
     return (
       <div className="meal-item">
         <MealDate />
-        <MealTitle />
-        <MealDescription />
+        <MealTitle mealName={this.props.mealName} />
+        <MealDescription mealCal={this.props.mealCal} mealIngredients={this.props.mealIngredients} />
       </div>
     );
   }

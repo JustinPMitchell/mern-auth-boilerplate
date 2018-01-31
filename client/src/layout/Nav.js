@@ -41,7 +41,6 @@ class Nav extends Component {
 
     var xDiff = xDown - xUp;
     var yDiff = yDown - yUp;
-
     if ( Math.abs( xDiff ) > Math.abs( yDiff ) ) {/*most significant*/
       console.log(displayDates);
         if ( xDiff > 0 ) {
