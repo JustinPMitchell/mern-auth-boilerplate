@@ -57,7 +57,11 @@ router.post('/signup', function(req, res, next) {
         password: req.body.password,
         height: req.body.height,
         weight: req.body.weight,
-        sex: req.body.sex
+        sex: req.body.sex,
+        //* add db criteria to create a new user
+        dob: req.body.dob,
+        exercise: req.body.exercise,
+        desire: req.body.desire
       }, function(err, user) {
         if (err){
           console.log('DB error', err);

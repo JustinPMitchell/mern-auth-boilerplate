@@ -49,6 +49,10 @@ class Profile extends Component {
           </div>
           <h2>{this.props.user.name}</h2>   
           <hr/>
+
+          <h2>You are this old: {this.props.user.dob}</h2>
+          <h2>This is your activity level: {this.props.user.exercise}</h2>          
+          <h2>This is your desire: {this.props.user.desire}</h2>          
           <h4>BMI</h4>
           <p>Macros</p>
           <table class="table table-stripe">

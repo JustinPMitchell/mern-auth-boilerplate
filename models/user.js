@@ -21,6 +21,7 @@ var userSchema = new mongoose.Schema({
     minlength: 8,
     maxlength: 99
   },
+  //these don't need to be required
   height: {
     type: String,
     required: true
@@ -33,8 +34,21 @@ var userSchema = new mongoose.Schema({
     type: String,
     required: true
   },
+  //* add new data
+  dob: {
+    type: String,
+    required: true
+  },
+  exercise: {
+    type: String,
+    required: true
+  },
+  desire: {
+    type: String,
+    required: true
+  },
   meals: [{
-    type: mongoose.Schema.Types.ObjectId,  //REFERENCING :D
+    type: mongoose.Schema.Types.ObjectId,  //REFERENCING :D, I don't think we are using this since each meal is linked to a user email
     ref: 'Meal'
   }]
 });
@@ -49,6 +63,10 @@ userSchema.set('toJSON', {
       height: ret.height,
       weight: ret.weight,
       sex: ret.sex,
+      //* add to prevent password
+      dob: ret.dob,
+      exercise: ret.exercise,
+      desire: ret.desire,
       meals: ret.meals
     };
     return returnJson;
