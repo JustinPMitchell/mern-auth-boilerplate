@@ -30,55 +30,10 @@ class Profile extends Component {
   render(){
     var that = this;
     if(this.props.user && this.props.user.name){
-      return (<div>
-          <h2>HELLO AGAIN {this.props.user.name}!</h2>
-          <h4>Your email is {this.props.user.email}</h4>
-          <p>this is height {this.props.user.height}</p>
-          <p>wow you should really loose some weight {this.props.user.weight}</p>
-          <p>this is sex {this.props.user.sex}</p>
-          <table class="table table-stripe">
-            <thead>
-              <tr>
-                <th>Start</th>
-                <th>End</th>
-                <th>Metadata</th>
-                <th>Delete</th>
-                <th>Edit</th>
-              </tr>
-            </thead>
-            <tbody>
-              {this.state.meals.map(meal => {
-                if(meal.user == that.props.user.email) {
-                  console.log('this is the name of the meal ', that.state.meals[0].name);
-                  console.log('this is the id from the meal ', meal.id);
-                  console.log('this is the id from the user ', that.props.user.id);
-                  return (
-                    <tr>
-                      <td>{meal.start}</td>
-                      <td>{meal.end}</td>
-                      <td>{meal.mealdata}</td>
-                      <td><button onClick={that.delete.bind(that, meal.id)} class="btn btn-danger">Delete</button></td>
-                      <td><Link to={`/edit/${meal.id}`} class="btn btn-success">Edit</Link>&nbsp;</td>
-                    </tr>
-                  )
-                }
-              })}
-            </tbody>
-          </table>
-        </div>);
-    }
-    else {
       return (
-      /*don't forget to move this div bit as well*/
-      <div className="Profile">
-      
-      {/*this infromation was already here*/}
-      {/*<p>This is a profile page. You need to be logged in to view it.</p>*/}
-        
-      {/*this infromation is here just for testing without having to run a build each time, remember to update
-      the other end of the if, else statement and delete this*/}
-
-          <h2>Patrick Star</h2>
+        <div>
+          {/*New Information needs to work correctly with old information*/}
+          <h2>{this.props.user.name}</h2>
           <hr/>
           <h4>BMI</h4>
           <p>Macros</p>
@@ -135,13 +90,45 @@ class Profile extends Component {
                 </th>
               </tr>
             </thead>
-            </table>
-            <canvas id="myChart"></canvas>
-
-
-
-
-
+          </table>
+{/* Table for adding information to the database, just here for testing, does not need to be here forever, or could be?? */}
+          <table class="table table-stripe">
+            <thead>
+              <tr>
+                <th>Start</th>
+                <th>End</th>
+                <th>Metadata</th>
+                <th>Delete</th>
+                <th>Edit</th>
+              </tr>
+            </thead>
+            <tbody>
+              {this.state.meals.map(meal => {
+                if(meal.user == that.props.user.email) {
+                  console.log('this is the name of the meal ', that.state.meals[0].name);
+                  console.log('this is the id from the meal ', meal.id);
+                  console.log('this is the id from the user ', that.props.user.id);
+                  return (
+                    <tr>
+                      <td>{meal.start}</td>
+                      <td>{meal.end}</td>
+                      <td>{meal.mealdata}</td>
+                      <td><button onClick={that.delete.bind(that, meal.id)} class="btn btn-danger">Delete</button></td>
+                      <td><Link to={`/edit/${meal.id}`} class="btn btn-success">Edit</Link>&nbsp;</td>
+                    </tr>
+                  )
+                }
+              })}
+            </tbody>
+          </table>
+        </div>);
+    }
+    else {
+      return (
+      /*don't forget to move this div bit as well*/
+        <div className="Profile">
+{/*      this infromation was already here
+*/}      <p>This is a profile page. You need to be logged in to view it.</p>
         </div>
       );
     }
