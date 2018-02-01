@@ -42,7 +42,7 @@ class Login extends Component {
     else {
       form = (<form onSubmit={this.handleSubmit}>
                 <div className="form-input">
-                <label for="email">Email:</label>
+                  <label for="email">Email:</label>
                   <input id="email" name="Email"
                        placeholder="Enter your email"
                        value={this.state.email}
@@ -50,7 +50,7 @@ class Login extends Component {
                   />
                 </div>
                 <div className="form-input">
-                <label for="password">Password:</label>
+                  <label for="password">Password:</label>
                   <input id="password" name="Password"
                        placeholder="Enter your password"
                        type="password"

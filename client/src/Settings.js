@@ -45,41 +45,36 @@ class Settings extends Component {
     let form = '';
 
     form = (<form onSubmit={this.onSubmit}>
-              <div>
-                <input name="height"
+              <div className="form-input">
+                <label for="height">Height:</label>              
+                <input id="height" name="height"
                      placeholder="Enter your height"
                      value={this.state.user.height}
                      onChange={this.onChange}
                 />
               </div>
-              <div>
-                <input name="weight"
+              <div className="form-input">
+                <label for="weight">Weight:</label>              
+                <input id="weight" name="weight"
                      placeholder="Enter your weight"
                      value={this.state.user.weight}
                      onChange={this.onChange}
                 />
               </div>
-              <div>
-                <input name="sex"
+              <div className="form-input">
+                <label for="sex">Sex:</label>
+                <input id="sex" name="sex"
                      placeholder="Enter your sex"
                      value={this.state.user.sex}
                      onChange={this.onChange}
                 />
               </div>
-              <div>
-                <input name="password"
-                     placeholder="Enter your password"
-                     value={this.state.user.password}
-                     onChange={this.onChange}
-                />
-              </div>
-
               <input type="submit" value="Update Settings" className="btn-primary" />
             </form>);
 
     return (
       <div className="settings">
-        <h1>Settings Coming soon</h1>
+        <h1>Personal Information: </h1>
         <div>
           {form}
         </div>
