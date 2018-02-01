@@ -33,14 +33,9 @@ class Profile extends Component {
 
   render(){
     var that = this;
-    // NOTE: commented so no build is required for testing
-    // if(this.props.user && this.props.user.name){
+    if(this.props.user && this.props.user.name){
       return (
         <div className='Profile'>
-          {/*New Information needs to work correctly with old information*/}
-    {/*// NOTE: commented so no build is required for testing*/}
-{/*          <h2>{this.props.user.name}</h2>
-*/}
           <div className="profile-picture-buttons-wrapper">
             <a href="/settings" className="profile-button">
               <img className="settings" src={settings}></img>
@@ -52,7 +47,7 @@ class Profile extends Component {
               <img className="add" src={add}></img>
             </a>
           </div>
-          <h2>Patrick Star</h2>   
+          <h2>{this.props.user.name}</h2>   
           <hr/>
           <h4>BMI</h4>
           <p>Macros</p>
@@ -141,17 +136,14 @@ class Profile extends Component {
             </tbody>
           </table>
         </div>);
-// NOTE: commented so no build is required for testing
-//     }
-//     else {
-//       return (
-//       /*don't forget to move this div bit as well*/
-//         <div className="Profile">
-// {/*      this infromation was already here
-// */}      <p>This is a profile page. You need to be logged in to view it.</p>
-//         </div>
-//       );
-//     }
+    }
+    else {
+      return (
+        <div className="Profile">
+          <p>This is a profile page. You need to be logged in to view it.</p>
+        </div>
+      );
+    }
   }
 }
 
