@@ -1,6 +1,11 @@
 import React, { Component } from 'react';
 import Logout from '../auth/Logout.js';
 import { Link } from 'react-router-dom';
+
+//images
+import logo from '../images/carrot-filled.svg';
+
+
 var xDown = null;                                                        
 var yDown = null; 
 let displayDates;
@@ -71,25 +76,24 @@ class Nav extends Component {
       links = (
         <span>
           <Link to="/profile">Profile</Link>
-          <Link to="/settings">Settings</Link>
-          <Link to="/mealcreate">Create a New Meal</Link>
           <Logout updateUser={this.props.updateUser} />
         </span>);
     }
     else {
       links = (
         <span>
-          <Link to="/login">Login</Link>
-          <Link to="/signup">Sign Up</Link>
-          <Link to="/settings">Settings</Link>
-          <Link to="/mealcreate">Create a New Meal</Link>
+          <li className="default-nav-item"><Link to="/login">Login</Link></li>
+          <li className="default-nav-item"><Link to="/signup">Sign Up</Link></li>
         </span>);
     }
     return(
         <div>
           <nav className="default-nav">
-            <a href="/">Home</a>
-            {links}
+            <li className="default-nav-logo"><img className="logo" src={logo}></img></li>
+            <ul className="default-nav-item-wrapper">
+              <li className="default-nav-item"><a href="/">Home</a></li>
+              {links}
+            </ul>
           </nav>
           <nav className="mobile-nav">
             <ul className="mobile-nav-item-wrapper">

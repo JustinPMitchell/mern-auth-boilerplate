@@ -59,48 +59,54 @@ class Signup extends Component {
     }
     else {
       form = (<form onSubmit={this.handleSubmit}>
-                <div>
-                  <input name="Name"
-                       placeholder="What is your first name?"
+                <div className="form-input">
+                  <label for="name">Name:</label>
+                  <input id="name" name="Name"
+                       placeholder="Patrick Star"
                        value={this.state.name}
                        onChange={this.handleNameChange}
                   />
                 </div>
-                <div>
-                  <input name="Email"
-                       placeholder="What is your email?"
+                <div className="form-input">
+                  <label for="email">Email:</label>
+                  <input id="email" name="Email"
+                       placeholder="patrickstar@gmail.com"
                        value={this.state.email}
                        onChange={this.handleEmailChange} />
                  </div>
-                 <div>
-                  <input name="Password"
-                     placeholder="Choose a password"
+                 <div className="form-input">
+                  <label for="password">Password:</label>
+                  <input id="password" name="Password"
+                     placeholder="************"
                      type="password"
                      value={this.state.password}
                      onChange={this.handlePasswordChange} />
                  </div>
-                 <div>
-                  <input name="Height"
-                     placeholder="Choose a height"
+                 <div className="form-input">
+                  <label for="height">Height:</label>
+                  <input id="height" name="Height"
+                     placeholder="68"
                      type="height"
                      value={this.state.height}
                      onChange={this.handleHeightChange} />
                  </div>
-                 <div>
-                  <input name="Weight"
-                     placeholder="Choose a weight"
+                 <div className="form-input">
+                  <label for="weight">Weight:</label>
+                  <input id="weight" name="Weight"
+                     placeholder="145"
                      type="weight"
                      value={this.state.weight}
                      onChange={this.handleWeightChange} />
                  </div>
-                 <div>
-                  <input name="Sex"
-                     placeholder="Choose a sex"
+                 <div className="form-input">
+                  <label for="sex">Sex:</label>
+                  <input id="sex" name="Sex"
+                     placeholder="male"
                      type="sex"
                      value={this.state.sex}
                      onChange={this.handleSexChange} />
                  </div>
-                 <input type="submit" value="Sign up!" className="btn-primary" />
+                 <button type="submit" className="btn-primary">SignUp</button>
               </form>);
     }
     return (
