@@ -1,6 +1,11 @@
 import React, { Component } from 'react';
 import Logout from '../auth/Logout.js';
 import { Link } from 'react-router-dom';
+
+//images
+import logo from '../images/carrot-filled.svg';
+
+
 var xDown = null;                                                        
 var yDown = null; 
 let displayDates;
@@ -71,8 +76,6 @@ class Nav extends Component {
       links = (
         <span>
           <Link to="/profile">Profile</Link>
-          <Link to="/settings">Settings</Link>
-          <Link to="/mealcreate">New Meal</Link>
           <Logout updateUser={this.props.updateUser} />
         </span>);
     }
@@ -87,7 +90,7 @@ class Nav extends Component {
     return(
         <div>
           <nav className="default-nav">
-            <li className="default-nav-logo"><img className="logo" src="https://png.icons8.com/metro/1600/carrot.png"></img></li>
+            <li className="default-nav-logo"><img className="logo" src={logo}></img></li>
             <ul className="default-nav-item-wrapper">
               <li className="default-nav-item"><a href="/">Home</a></li>
               {links}

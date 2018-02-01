@@ -2,6 +2,10 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 
+//images
+import add from './images/add.svg';
+import settings from './images/settings.svg';
+
 class Profile extends Component {
   constructor(props){
     super(props);
@@ -29,11 +33,26 @@ class Profile extends Component {
 
   render(){
     var that = this;
-    if(this.props.user && this.props.user.name){
+    // NOTE: commented so no build is required for testing
+    // if(this.props.user && this.props.user.name){
       return (
-        <div>
+        <div className='Profile'>
           {/*New Information needs to work correctly with old information*/}
-          <h2>{this.props.user.name}</h2>
+    {/*// NOTE: commented so no build is required for testing*/}
+{/*          <h2>{this.props.user.name}</h2>
+*/}
+          <div className="profile-picture-buttons-wrapper">
+            <a href="/settings" className="profile-button">
+              <img className="settings" src={settings}></img>
+            </a>
+            <div className="profile-picture-wrapper">
+              <img className="profile-picture" src="https://www.alitumbas.av.tr/uploads/empty-profile-picture-woman.jpg"></img>
+            </div>
+            <a href="/mealcreate" className="profile-button">
+              <img className="add" src={add}></img>
+            </a>
+          </div>
+          <h2>Patrick Star</h2>   
           <hr/>
           <h4>BMI</h4>
           <p>Macros</p>
@@ -122,16 +141,17 @@ class Profile extends Component {
             </tbody>
           </table>
         </div>);
-    }
-    else {
-      return (
-      /*don't forget to move this div bit as well*/
-        <div className="Profile">
-{/*      this infromation was already here
-*/}      <p>This is a profile page. You need to be logged in to view it.</p>
-        </div>
-      );
-    }
+// NOTE: commented so no build is required for testing
+//     }
+//     else {
+//       return (
+//       /*don't forget to move this div bit as well*/
+//         <div className="Profile">
+// {/*      this infromation was already here
+// */}      <p>This is a profile page. You need to be logged in to view it.</p>
+//         </div>
+//       );
+//     }
   }
 }
 
