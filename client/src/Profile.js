@@ -68,7 +68,82 @@ class Profile extends Component {
         </div>);
     }
     else {
-      return (<p>This is a profile page. You need to be logged in to view it.</p>);
+      return (
+      /*don't forget to move this div bit as well*/
+      <div className="Profile">
+      
+      {/*this infromation was already here*/}
+      {/*<p>This is a profile page. You need to be logged in to view it.</p>*/}
+        
+      {/*this infromation is here just for testing without having to run a build each time, remember to update
+      the other end of the if, else statement and delete this*/}
+
+          <h2>Patrick Star</h2>
+          <hr/>
+          <h4>BMI</h4>
+          <p>Macros</p>
+          <table class="table table-stripe">
+            <thead>
+              <tr>
+                <th>
+                  <div className="macro-header">
+                    Carbs  
+                  </div>
+                  <div className="macro-content"><br/>
+                    <h1>280g</h1><br/>
+                    <h4>carb intake</h4><br/>
+{/*                    counld light these up when someone is within the recc.
+*/}                 <h2>Goals</h2>
+                    <div className="macro-count">
+                      <h3>count(-5%): 250g</h3>
+                      <h3>count : 275g</h3>
+                      <h3>count(+5%): 300g</h3>
+                    </div>
+                  </div>
+                </th>
+                <th>
+                  <div className="macro-header">
+                    Protein  
+                  </div>
+                  <div className="macro-content"><br/>
+                    <h1>52g</h1><br/>
+                    <h4>carb intake</h4><br/>
+{/*                    counld light these up when someone is within the recc.
+*/}                 <h2>Goals</h2>
+                    <div className="macro-count">
+                      <h3>count(-5%): 50g</h3>
+                      <h3>count : 56g</h3>
+                      <h3>count(+5%): 60g</h3>
+                    </div>
+                  </div>
+                </th>
+                <th>
+                  <div className="macro-header">
+                    Fat  
+                  </div>
+                  <div className="macro-content"><br/>
+                    <h1>70g</h1><br/>
+                    <h4>carb intake</h4><br/>
+{/*                    counld light these up when someone is within the recc.
+*/}                 <h2>Goals</h2>
+                    <div className="macro-count">
+                      <h3>count(-5%): 55g</h3>
+                      <h3>count : 60g</h3>
+                      <h3>count(+5%): 65g</h3>
+                    </div>
+                  </div>
+                </th>
+              </tr>
+            </thead>
+            </table>
+            <canvas id="myChart"></canvas>
+
+
+
+
+
+        </div>
+      );
     }
   }
 }

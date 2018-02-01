@@ -81,6 +81,7 @@ class Nav extends Component {
         <span>
           <li className="default-nav-item"><Link to="/login">Login</Link></li>
           <li className="default-nav-item"><Link to="/signup">Sign Up</Link></li>
+          <li className="default-nav-item"><Link to="/profile">Profile</Link></li>
         </span>);
     }
     return(
