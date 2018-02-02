@@ -11,7 +11,8 @@ class Profile extends Component {
     super(props);
     this.state = {
       meals: [],
-      bmr: 0
+      bmr: 0,
+      calorie: 0
     }
   }
 
@@ -27,13 +28,7 @@ class Profile extends Component {
 
 
     var calculateBmr = () => {
-      console.log('bmr works');
-      
-      function parseDate(input) {
-        var parts = input.match(/(\d+)/g);
-        // new Date(year, month [, date [, hours[, minutes[, seconds[, ms]]]]])
-        return new Date(parts[0], parts[1]-1, parts[2]); // months are 0-based
-      }      
+      console.log('bmr works');   
 
       function calculateAge() { // dob is a date
         var dob = new Date(that.props.user.dob);
@@ -45,6 +40,7 @@ class Profile extends Component {
       }
       
       var age = calculateAge();
+
       var bmr = 0;
       if(this.props.user.sex === 'male') {
         bmr = 66.47 + (13.7 * this.props.user.weight) + (5 * this.props.user.height) - (6.8 * age);
@@ -57,9 +53,37 @@ class Profile extends Component {
         this.setState({ bmr: bmr });      
       }
       console.log('this is the bmr: ', bmr);
+      return bmr;
     }
 
-    calculateBmr();
+    var calculateCalorie = (bmr) => {
+
+      if(this.props.user.exercise === 'not at all') {
+        bmr *= 1.2;
+      } else if(this.props.user.exercise === 'little') {
+        bmr *= 1.375;
+      } else if(this.props.user.exercise === 'moderate') {
+        bmr *= 1.55;
+      } else if(this.props.user.exercise === 'active') {
+        bmr *= 1.725;
+      } else if(this.props.user.exercise === 'extra active') {
+        bmr *= 1.9;
+      } else {
+        bmr *= 1.375;
+      }
+
+      if(this.props.user.desire === 'loose weight') {
+        bmr *= .85;
+      } else if(this.props.user.desire === 'gain weight') {
+        bmr *= 1.15;
+      } else {
+        bmr *= 1;
+      }
+
+      console.log('this is the recommended calorie count: ', bmr);
+    }
+
+    calculateCalorie(calculateBmr());
 
   }
 
@@ -94,6 +118,7 @@ class Profile extends Component {
           <h2>This is your activity level: {this.props.user.exercise}</h2>          
           <h2>This is your desire: {this.props.user.desire}</h2>          
           <h4>BMR: {this.state.bmr}</h4>
+          <h4>Recommendended Calorie Intake: {this.state.calorie}</h4>
           <p>Macros</p>
           <table class="table table-stripe">
             <thead>
