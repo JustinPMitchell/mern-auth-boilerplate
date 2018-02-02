@@ -111,7 +111,7 @@ class Signup extends Component {
                  <div className="form-input">
                   <label for="weight">Weight:</label>
                   <input id="weight" name="Weight"
-                     placeholder="145"
+                     placeholder="80"
                      type="weight"
                      value={this.state.weight}
                      onChange={this.handleWeightChange} />

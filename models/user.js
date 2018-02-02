@@ -36,7 +36,7 @@ var userSchema = new mongoose.Schema({
   },
   //* add new data
   dob: {
-    type: String,
+    type: Date,
     required: true
   },
   exercise: {
