@@ -10,7 +10,8 @@ class Profile extends Component {
   constructor(props){
     super(props);
     this.state = {
-      meals: []
+      meals: [],
+      bmr: 0
     }
   }
 
@@ -47,10 +48,13 @@ class Profile extends Component {
       var bmr = 0;
       if(this.props.user.sex === 'male') {
         bmr = 66.47 + (13.7 * this.props.user.weight) + (5 * this.props.user.height) - (6.8 * age);
+        this.setState({ bmr: bmr });
       }else if(this.props.user.sex === 'female') {
         bmr = 655.1 + (9.6 * this.props.user.weight) + (1.8 * this.props.user.height) - (4.7 * age);
+        this.setState({ bmr: bmr });      
       }else {
         bmr = ((66.47 + (13.7 * this.props.user.weight) + (5 * this.props.user.height) - (6.8 * age)) + (655.1 + (9.6 * this.props.user.weight) + (1.8 * this.props.user.height) - (4.7 * age))) / 2;
+        this.setState({ bmr: bmr });      
       }
       console.log('this is the bmr: ', bmr);
     }
@@ -89,7 +93,7 @@ class Profile extends Component {
           <h2>You are this old: {this.props.user.dob}</h2>
           <h2>This is your activity level: {this.props.user.exercise}</h2>          
           <h2>This is your desire: {this.props.user.desire}</h2>          
-          <h4>BMR: {this.bmr}</h4>
+          <h4>BMR: {this.state.bmr}</h4>
           <p>Macros</p>
           <table class="table table-stripe">
             <thead>
