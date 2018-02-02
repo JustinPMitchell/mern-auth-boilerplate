@@ -12,7 +12,10 @@ class Profile extends Component {
     this.state = {
       meals: [],
       bmr: 0,
-      calorie: 0
+      calorie: 0,
+      carbs: 0,
+      protein: 0,
+      fat: 0
     }
   }
 
@@ -75,15 +78,25 @@ class Profile extends Component {
       if(this.props.user.desire === 'loose weight') {
         bmr *= .85;
         this.setState({ calorie: bmr });
+        this.setState({ carbs: bmr * .30 });
+        this.setState({ protein: bmr * .35 });
+        this.setState({ fat: bmr * .35 });
       } else if(this.props.user.desire === 'gain weight') {
         bmr *= 1.15;
         this.setState({ calorie: bmr });
+        this.setState({ carbs: bmr * .30 });
+        this.setState({ protein: bmr * .35 });
+        this.setState({ fat: bmr * .35 });
       } else {
         bmr *= 1;
         this.setState({ calorie: bmr });
+        this.setState({ carbs: bmr * .30 });
+        this.setState({ protein: bmr * .35 });
+        this.setState({ fat: bmr * .35 });
       }
 
       console.log('this is the recommended calorie count: ', bmr);
+      return bmr;
     }
 
     calculateCalorie(calculateBmr());
@@ -120,9 +133,9 @@ class Profile extends Component {
           <h2>You are this old: {this.props.user.dob}</h2>
           <h2>This is your activity level: {this.props.user.exercise}</h2>          
           <h2>This is your desire: {this.props.user.desire}</h2>          
-          <h4>BMR: {this.state.bmr}</h4>
-          <h4>Calorie: {this.state.calorie}</h4>
-          <h4>Recommendended Calorie Intake: {this.state.calorie}</h4>
+          <h4>BMR: { Math.round(this.state.bmr) }</h4>
+          <h4>Calorie: { Math.round(this.state.calorie) }</h4>
+          <h4>Recommendended Calorie Intake: { Math.round(this.state.calorie) }</h4>
           <p>Macros</p>
           <table class="table table-stripe">
             <thead>
@@ -132,7 +145,7 @@ class Profile extends Component {
                     Carbs  
                   </div>
                   <div className="macro-content"><br/>
-                    <h1>280g</h1><br/>
+                    <h1>{ Math.round(this.state.carbs) }g</h1><br/>
                     <h4>carb intake</h4><br/>
 {/*                    counld light these up when someone is within the recc.
 */}                 <h2>Goals</h2>
@@ -148,7 +161,7 @@ class Profile extends Component {
                     Protein  
                   </div>
                   <div className="macro-content"><br/>
-                    <h1>52g</h1><br/>
+                    <h1>{ Math.round(this.state.protein) }g</h1><br/>
                     <h4>carb intake</h4><br/>
 {/*                    counld light these up when someone is within the recc.
 */}                 <h2>Goals</h2>
@@ -164,7 +177,7 @@ class Profile extends Component {
                     Fat  
                   </div>
                   <div className="macro-content"><br/>
-                    <h1>70g</h1><br/>
+                    <h1>{ Math.round(this.state.fat) }g</h1><br/>
                     <h4>carb intake</h4><br/>
 {/*                    counld light these up when someone is within the recc.
 */}                 <h2>Goals</h2>
