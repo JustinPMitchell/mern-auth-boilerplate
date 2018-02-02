@@ -74,10 +74,13 @@ class Profile extends Component {
 
       if(this.props.user.desire === 'loose weight') {
         bmr *= .85;
+        this.setState({ calorie: bmr });
       } else if(this.props.user.desire === 'gain weight') {
         bmr *= 1.15;
+        this.setState({ calorie: bmr });
       } else {
         bmr *= 1;
+        this.setState({ calorie: bmr });
       }
 
       console.log('this is the recommended calorie count: ', bmr);
@@ -118,6 +121,7 @@ class Profile extends Component {
           <h2>This is your activity level: {this.props.user.exercise}</h2>          
           <h2>This is your desire: {this.props.user.desire}</h2>          
           <h4>BMR: {this.state.bmr}</h4>
+          <h4>Calorie: {this.state.calorie}</h4>
           <h4>Recommendended Calorie Intake: {this.state.calorie}</h4>
           <p>Macros</p>
           <table class="table table-stripe">
