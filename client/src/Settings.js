@@ -1,9 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 
-
-
-
 class Settings extends Component {
 
   constructor(props) {
@@ -31,12 +28,13 @@ class Settings extends Component {
 
     onSubmit = (e) => {
       e.preventDefault();
-
-      const { height, weight, sex, password } = this.state.user;
-
-      axios.put('/settings/'+this.props.user.id, { height, weight, sex, password })
+      const { height, weight, sex, exercise, desire } = this.state.user;
+      axios.put('/settings/'+this.props.user.id, { height, weight, sex, exercise, desire })
       .then((result) => {
-        this.props.history.push("/profile")
+        if(this.props.history){
+          this.props.history.push("/profile");
+        }
+        this.props.updateUser();
       });
     }
 
@@ -69,6 +67,22 @@ class Settings extends Component {
                      onChange={this.onChange}
                 />
               </div>
+              <div className="form-input">
+                <label for="exercise">Exercise:</label>
+                <input id="exercise" name="exercise"
+                     placeholder="not at all"
+                     value={this.state.user.exercise}
+                     onChange={this.onChange}
+                />
+              </div>
+              <div className="form-input">
+                <label for="desire">Desire:</label>
+                <input id="desire" name="desire"
+                     placeholder="loose weight"
+                     value={this.state.user.desire}
+                     onChange={this.onChange}
+                />
+              </div>                            
               <input type="submit" value="Update Settings" className="btn-primary" />
             </form>);
 

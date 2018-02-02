@@ -11,10 +11,14 @@ class Signup extends Component {
       password: '',
       height: '',
       weight: '',
-      sex: ''
+      sex: '',
+      //* add to state
+      dob: '',
+      exercise: '',
+      desire: ''
     }
   }
-
+  //dry this out
   handleNameChange = (e) => {
     this.setState({name: e.target.value})
   }
@@ -33,6 +37,16 @@ class Signup extends Component {
   handleSexChange = (e) => {
     this.setState({sex: e.target.value})
   }
+  //* add new function handle
+  handleDobChange = (e) => {
+    this.setState({dob: e.target.value});
+  }
+  handleExerciseChange = (e) => {
+    this.setState({exercise: e.target.value});
+  }
+  handleDesireChange = (e) => {
+    this.setState({desire: e.target.value});
+  }
 
   handleSubmit = (e) => {
     e.preventDefault();
@@ -42,7 +56,11 @@ class Signup extends Component {
       password: this.state.password,
       height: this.state.height,
       weight: this.state.weight,
-      sex: this.state.sex
+      sex: this.state.sex,
+      //add to axios post
+      dob: this.state.dob,
+      exercise: this.state.exercise,
+      desire: this.state.desire
     }).then(result => {
       localStorage.setItem('mernToken', result.data.token);
       this.props.updateUser();
@@ -106,7 +124,29 @@ class Signup extends Component {
                      value={this.state.sex}
                      onChange={this.handleSexChange} />
                  </div>
-                 <button type="submit" className="btn-primary">SignUp</button>
+                {/** adds div for form sign-up*/}
+                <div className="form-input">
+                  <label for="dob">Date of Birth:</label>
+                  <input id="dob" name="dob"
+                       placeholder="05/06/1990"
+                       value={this.state.dob}
+                       onChange={this.handleDobChange} />
+                </div>
+                <div className="form-input">
+                  <label for="exercise">Exercise:</label>
+                  <input id="exercise" name="exercise"
+                       placeholder="not at all"
+                       value={this.state.exercise}
+                       onChange={this.handleExerciseChange} />
+                </div>
+                <div className="form-input">
+                  <label for="desire">Desire:</label>
+                  <input id="desire" name="desire"
+                       placeholder="loose weight"
+                       value={this.state.desire}
+                       onChange={this.handleDesireChange} />
+                </div>                                                                     
+                <button type="submit" className="btn-primary">SignUp</button>
               </form>);
     }
     return (
