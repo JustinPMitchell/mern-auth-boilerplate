@@ -31,7 +31,10 @@ class Settings extends Component {
       const { height, weight, sex, exercise, desire } = this.state.user;
       axios.put('/settings/'+this.props.user.id, { height, weight, sex, exercise, desire })
       .then((result) => {
-        this.props.history.push("/profile")
+        if(this.props.history){
+          this.props.history.push("/profile");
+        }
+        this.props.updateUser();
       });
     }
 
