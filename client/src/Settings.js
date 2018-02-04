@@ -27,12 +27,14 @@ class Settings extends Component {
 
 
     onSubmit = (e) => {
-      e.preventDefault();
       const { height, weight, sex, exercise, desire } = this.state.user;
       axios.put('/settings/'+this.props.user.id, { height, weight, sex, exercise, desire })
       .then((result) => {
-        if(this.props.history){
-          this.props.history.push("/profile");
+        console.log('promise is reached');
+        window.location.href = "/profile";
+        if(this.props.router){
+          console.log('if statement is reached');
+          this.props.router.push("/profile");
         }
         this.props.updateUser();
       });
@@ -83,7 +85,7 @@ class Settings extends Component {
                      onChange={this.onChange}
                 />
               </div>                            
-              <input type="submit" value="Update Settings" className="btn-primary" />
+              <input href="/profile" type="submit" value="Update Settings" className="btn-primary" />
             </form>);
 
     return (

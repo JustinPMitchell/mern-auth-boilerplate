@@ -128,15 +128,11 @@ class Profile extends Component {
             </a>
           </div>
           <h2>{this.props.user.name}</h2>   
-          <hr/>
-
-          <h2>You are this old: {this.props.user.dob}</h2>
-          <h2>This is your activity level: {this.props.user.exercise}</h2>          
-          <h2>This is your desire: {this.props.user.desire}</h2>          
-          <h4>BMR: { Math.round(this.state.bmr) }</h4>
-          <h4>Calorie: { Math.round(this.state.calorie) }</h4>
+          <hr/>      
+          <h4>Your BMR: { Math.round(this.state.bmr) }</h4>
           <h4>Recommendended Calorie Intake: { Math.round(this.state.calorie) }</h4>
-          <p>Macros</p>
+          <hr/>
+          <h2>Macros</h2>
           <table class="table table-stripe">
             <thead>
               <tr>
@@ -191,6 +187,7 @@ class Profile extends Component {
               </tr>
             </thead>
           </table>
+          <hr/>
 {/* Table for adding information to the database, just here for testing, does not need to be here forever, or could be?? */}
           <table class="table table-stripe">
             <thead>

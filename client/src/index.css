@@ -15,9 +15,6 @@ body {
   bottom: 0;
   height: 20px;
 }
-.space{
-  margin: 5%;
-}
 
 /*forms*/
 form{
@@ -266,6 +263,9 @@ tr{
 /* end meal component */
 
 /*profile page*/
+.Profile{
+  margin:5%;
+}
 .profile-picture{
   height: 135px;
 }
@@ -289,7 +289,42 @@ tr{
   text-align: center;
 }
 /*end profile page*/
-
+/* add meal page*/
+.create-meal-form{
+  background-color: transparent;
+  width: 68%;
+  position: relative;
+  left: 18%;
+}
+.diet-input-wrapper,.health-input-wrapper,.cal-burned-wrapper{
+  margin:3.5em 0;
+  position: relative;
+}
+.diet-label,.health-label,.cal-burned-label{
+  width:unset;
+}
+.diet-dropdown,.health-dropdown{
+  position: absolute;
+  right: 7vw;
+  height: 3em;
+  width: 23vw;
+}
+.cal-burned-input{
+  background: transparent;
+  border: 1px solid grey;
+  position: absolute;
+  right: 7vw;
+  width: 30%;
+}
+.submit-meal-plan{
+  background: transparent;
+  border: 1px solid grey;
+  position: absolute;
+  right: 0;
+  width: unset;
+  padding: .5em 1.5em;
+}
+/* end add meal page */
 
 /* show desktop stuff */
 @media screen and (min-width: 550px) {
