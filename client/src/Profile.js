@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
+import HeartRate from './Profile/HeartRate.js'
 
 //images
 import add from './images/add.svg';
@@ -15,7 +16,8 @@ class Profile extends Component {
       calorie: 0,
       carbs: 0,
       protein: 0,
-      fat: 0
+      fat: 0,
+      age: 0
     }
   }
 
@@ -43,6 +45,7 @@ class Profile extends Component {
       }
       
       var age = calculateAge();
+      this.setState({ age: age });      
 
       var bmr = 0;
       if(this.props.user.sex === 'male') {
@@ -217,6 +220,8 @@ class Profile extends Component {
               })}
             </tbody>
           </table>
+          <hr/>
+          <HeartRate age={this.state.age} />
         </div>);
     }
     else {
