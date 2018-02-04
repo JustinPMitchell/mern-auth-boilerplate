@@ -59,6 +59,13 @@ button{
   top: 50%; 
   left: 50%;
 }
+/*end forms*/
+
+/*signup*/
+.sex-dropdown, .exercise-dropdown, .desire-dropdown{
+  font-size: 18px;
+}
+/*end signup*/
 
 /*tables*/
 table{

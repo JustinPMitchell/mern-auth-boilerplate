@@ -60,7 +60,6 @@ class Profile extends Component {
     }
 
     var calculateCalorie = (bmr) => {
-
       if(this.props.user.exercise === 'not at all') {
         bmr *= 1.2;
       } else if(this.props.user.exercise === 'little') {
@@ -74,25 +73,25 @@ class Profile extends Component {
       } else {
         bmr *= 1.375;
       }
-
-      if(this.props.user.desire === 'loose weight') {
-        bmr *= .85;
+      console.log('user desires to: ', this.props.user.desire);
+      if(this.props.user.desire === 'fat loss') {
+        bmr *= .90;
         this.setState({ calorie: bmr });
-        this.setState({ carbs: bmr * .30 });
-        this.setState({ protein: bmr * .35 });
-        this.setState({ fat: bmr * .35 });
-      } else if(this.props.user.desire === 'gain weight') {
-        bmr *= 1.15;
+        this.setState({ carbs: (bmr * .17) / 4 });
+        this.setState({ protein: (bmr * .47) / 4 });
+        this.setState({ fat: (bmr * .27) / 9 });
+      } else if(this.props.user.desire === 'build muscle') {
+        bmr *= 1.10;
         this.setState({ calorie: bmr });
-        this.setState({ carbs: bmr * .30 });
-        this.setState({ protein: bmr * .35 });
-        this.setState({ fat: bmr * .35 });
+        this.setState({ carbs: (bmr * .37) / 4 });
+        this.setState({ protein: (bmr * .32) / 4 });
+        this.setState({ fat: (bmr * .22) / 9 });
       } else {
         bmr *= 1;
         this.setState({ calorie: bmr });
-        this.setState({ carbs: bmr * .30 });
-        this.setState({ protein: bmr * .35 });
-        this.setState({ fat: bmr * .35 });
+        this.setState({ carbs: (bmr * .37) / 4 });
+        this.setState({ protein: (bmr * .37) / 4 });
+        this.setState({ fat: (bmr * .17) / 9 });
       }
 
       console.log('this is the recommended calorie count: ', bmr);
@@ -129,8 +128,8 @@ class Profile extends Component {
           </div>
           <h2>{this.props.user.name}</h2>   
           <hr/>      
-          <h4>Your BMR: { Math.round(this.state.bmr) }</h4>
-          <h4>Recommendended Calorie Intake: { Math.round(this.state.calorie) }</h4>
+          <h4>Your BMR: { Math.round(this.state.bmr) } calories</h4>
+          <h4>Recommendended Intake: { Math.round(this.state.calorie) } calories</h4>
           <hr/>
           <h2>Macros</h2>
           <table class="table table-stripe">

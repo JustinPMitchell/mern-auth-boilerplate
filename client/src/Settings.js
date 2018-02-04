@@ -63,27 +63,31 @@ class Settings extends Component {
               </div>
               <div className="form-input">
                 <label for="sex">Sex:</label>
-                <input id="sex" name="sex"
-                     placeholder="Enter your sex"
-                     value={this.state.user.sex}
-                     onChange={this.onChange}
-                />
+                  <select id="sex" name="sex" onChange={this.onChange} className="sex-dropdown">
+                    <option value="male">male</option>
+                    <option value="female">female</option>
+                    <option value="other">other</option>                    
+                  </select>
               </div>
               <div className="form-input">
                 <label for="exercise">Exercise:</label>
-                <input id="exercise" name="exercise"
-                     placeholder="not at all"
-                     value={this.state.user.exercise}
-                     onChange={this.onChange}
-                />
+                  <select id="exercise" name="exercise" onChange={this.onChange} className="exercise-dropdown">
+                    <option value="not at all">not at all</option>
+                    <option value="little">little</option>
+                    <option value="moderate">moderate</option>
+                    <option value="active">active</option>
+                    <option value="extra active">extra active</option>                                        
+                    <option value="other">other</option>                         
+                  </select>
               </div>
               <div className="form-input">
                 <label for="desire">Desire:</label>
-                <input id="desire" name="desire"
-                     placeholder="loose weight"
-                     value={this.state.user.desire}
-                     onChange={this.onChange}
-                />
+                  <select id="desire" name="desire" onChange={this.onChange} className="desire-dropdown">
+                    <option value="fat loss">fat loss</option>
+                    <option value="maintenance">maintenance</option>
+                    <option value="build muscle">build muscle</option>
+                    <option value="other">other</option>                      
+                  </select>
               </div>                            
               <input href="/profile" type="submit" value="Update Settings" className="btn-primary" />
             </form>);
