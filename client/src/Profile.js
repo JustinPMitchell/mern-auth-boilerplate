@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
+import HeartRate from './Profile/HeartRate.js'
 
 //images
 import add from './images/add.svg';
@@ -12,7 +13,11 @@ class Profile extends Component {
     this.state = {
       meals: [],
       bmr: 0,
-      calorie: 0
+      calorie: 0,
+      carbs: 0,
+      protein: 0,
+      fat: 0,
+      age: 0
     }
   }
 
@@ -21,25 +26,22 @@ class Profile extends Component {
     axios.get('/api/meal')
       .then(res => {
         this.setState({ meals: res.data });
-        console.log(this.state.meals);
       })
     var that = this;
 
 
 
     var calculateBmr = () => {
-      console.log('bmr works');   
 
       function calculateAge() { // dob is a date
         var dob = new Date(that.props.user.dob);
-        console.log(dob);
         var ageDifMs = Date.now() - dob.getTime();
-        console.log("Age Difference: " + ageDifMs);
         var ageDate = new Date(ageDifMs); // miliseconds from epoch
         return Math.abs(ageDate.getUTCFullYear() - 1970);
       }
       
       var age = calculateAge();
+      this.setState({ age: age });      
 
       var bmr = 0;
       if(this.props.user.sex === 'male') {
@@ -52,12 +54,10 @@ class Profile extends Component {
         bmr = ((66.47 + (13.7 * this.props.user.weight) + (5 * this.props.user.height) - (6.8 * age)) + (655.1 + (9.6 * this.props.user.weight) + (1.8 * this.props.user.height) - (4.7 * age))) / 2;
         this.setState({ bmr: bmr });      
       }
-      console.log('this is the bmr: ', bmr);
       return bmr;
     }
 
     var calculateCalorie = (bmr) => {
-
       if(this.props.user.exercise === 'not at all') {
         bmr *= 1.2;
       } else if(this.props.user.exercise === 'little') {
@@ -71,19 +71,26 @@ class Profile extends Component {
       } else {
         bmr *= 1.375;
       }
-
-      if(this.props.user.desire === 'loose weight') {
-        bmr *= .85;
+      if(this.props.user.desire === 'fat loss') {
+        bmr *= .90;
         this.setState({ calorie: bmr });
-      } else if(this.props.user.desire === 'gain weight') {
-        bmr *= 1.15;
+        this.setState({ carbs: (bmr * .17) / 4 });
+        this.setState({ protein: (bmr * .47) / 4 });
+        this.setState({ fat: (bmr * .27) / 9 });
+      } else if(this.props.user.desire === 'build muscle') {
+        bmr *= 1.10;
         this.setState({ calorie: bmr });
+        this.setState({ carbs: (bmr * .37) / 4 });
+        this.setState({ protein: (bmr * .32) / 4 });
+        this.setState({ fat: (bmr * .22) / 9 });
       } else {
         bmr *= 1;
         this.setState({ calorie: bmr });
+        this.setState({ carbs: (bmr * .37) / 4 });
+        this.setState({ protein: (bmr * .37) / 4 });
+        this.setState({ fat: (bmr * .17) / 9 });
       }
-
-      console.log('this is the recommended calorie count: ', bmr);
+      return bmr;
     }
 
     calculateCalorie(calculateBmr());
@@ -91,7 +98,6 @@ class Profile extends Component {
   }
 
   delete(id){
-    console.log(id);
     axios.delete('/api/meal/'+id)
       .then((result) => {
 
@@ -115,15 +121,11 @@ class Profile extends Component {
             </a>
           </div>
           <h2>{this.props.user.name}</h2>   
+          <hr/>      
+          <h4>Your BMR: { Math.round(this.state.bmr) } calories</h4>
+          <h4>Recommendended Intake: { Math.round(this.state.calorie) } calories</h4>
           <hr/>
-
-          <h2>You are this old: {this.props.user.dob}</h2>
-          <h2>This is your activity level: {this.props.user.exercise}</h2>          
-          <h2>This is your desire: {this.props.user.desire}</h2>          
-          <h4>BMR: {this.state.bmr}</h4>
-          <h4>Calorie: {this.state.calorie}</h4>
-          <h4>Recommendended Calorie Intake: {this.state.calorie}</h4>
-          <p>Macros</p>
+          <h2>Macros</h2>
           <table class="table table-stripe">
             <thead>
               <tr>
@@ -132,7 +134,7 @@ class Profile extends Component {
                     Carbs  
                   </div>
                   <div className="macro-content"><br/>
-                    <h1>280g</h1><br/>
+                    <h1>{ Math.round(this.state.carbs) }g</h1><br/>
                     <h4>carb intake</h4><br/>
 {/*                    counld light these up when someone is within the recc.
 */}                 <h2>Goals</h2>
@@ -148,7 +150,7 @@ class Profile extends Component {
                     Protein  
                   </div>
                   <div className="macro-content"><br/>
-                    <h1>52g</h1><br/>
+                    <h1>{ Math.round(this.state.protein) }g</h1><br/>
                     <h4>carb intake</h4><br/>
 {/*                    counld light these up when someone is within the recc.
 */}                 <h2>Goals</h2>
@@ -164,7 +166,7 @@ class Profile extends Component {
                     Fat  
                   </div>
                   <div className="macro-content"><br/>
-                    <h1>70g</h1><br/>
+                    <h1>{ Math.round(this.state.fat) }g</h1><br/>
                     <h4>carb intake</h4><br/>
 {/*                    counld light these up when someone is within the recc.
 */}                 <h2>Goals</h2>
@@ -178,6 +180,7 @@ class Profile extends Component {
               </tr>
             </thead>
           </table>
+          <hr/>
 {/* Table for adding information to the database, just here for testing, does not need to be here forever, or could be?? */}
           <table class="table table-stripe">
             <thead>
@@ -192,9 +195,6 @@ class Profile extends Component {
             <tbody>
               {this.state.meals.map(meal => {
                 if(meal.user == that.props.user.email) {
-                  console.log('this is the name of the meal ', that.state.meals[0].name);
-                  console.log('this is the id from the meal ', meal.id);
-                  console.log('this is the id from the user ', that.props.user.id);
                   return (
                     <tr>
                       <td>{meal.start}</td>
@@ -208,6 +208,8 @@ class Profile extends Component {
               })}
             </tbody>
           </table>
+          <hr/>
+          <HeartRate age={this.state.age} />
         </div>);
     }
     else {

@@ -89,6 +89,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
+<<<<<<< HEAD
         <Router>
           <div>
             <Nav dates={this.state.dates} dateIndex={this.state.dateIndex} setDateIndex={this.setDateIndex} user={this.state.user} updateUser={this.getUser} />
@@ -105,9 +106,29 @@ class App extends Component {
                 () => (<Settings user={this.state.user} setFlash={this.setFlash} updateUser={this.getUser} />)} />
               <Route path="/mealcreate" component={
                 () => (<MealCreate user={this.state.user} dates={this.state.dates} setFlash={this.setFlash} />)} />
+=======
+        <div className="app-content">
+          <Router>
+            <div>
+              <Nav dates={this.state.dates} dateIndex={this.state.dateIndex} setDateIndex={this.setDateIndex} user={this.state.user} updateUser={this.getUser} />
+              <div className="space">
+                <Flash flashType={this.state.flashType} flash={this.state.flash} setFlash={this.setFlash} cancelFlash={this.cancelFlash} />
+                <Route exact path="/" component={() => (<Home currentDate={this.state.dates[this.state.dateIndex]} />)} />
+                <Route path="/login" component={
+                  () => (<Login user={this.state.user} setFlash={this.setFlash} updateUser={this.getUser} />)} />
+                <Route path="/signup" component={
+                  () => (<Signup user={this.state.user} setFlash={this.setFlash} updateUser={this.getUser} />)} />
+                <Route path="/profile" component={
+                  () => (<Profile user={this.state.user} setFlash={this.setFlash} />)} />
+                <Route path="/settings" component={
+                  () => (<Settings user={this.state.user} setFlash={this.setFlash} updateUser={this.getUser} />)} />
+                <Route path="/mealcreate" component={
+                  () => (<MealCreate user={this.state.user} setFlash={this.setFlash} />)} />
+              </div>
+>>>>>>> c5994e3dea48404cbe3d3fcad17f1f54d00ee937
             </div>
-          </div>
-        </Router>
+          </Router>
+        </div>
         <Footer />
       </div>
     );

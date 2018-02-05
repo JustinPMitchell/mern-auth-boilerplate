@@ -24,28 +24,28 @@ var userSchema = new mongoose.Schema({
   //these don't need to be required
   height: {
     type: String,
-    required: true
+    required: false
   },
   weight: {
     type: String,
-    required: true
+    required: false
   },   
   sex: {
     type: String,
-    required: true
+    required: false
   },
   //* add new data
   dob: {
     type: Date,
-    required: true
+    required: false
   },
   exercise: {
     type: String,
-    required: true
+    required: false
   },
   desire: {
     type: String,
-    required: true
+    required: false
   },
   meals: {
     end: {
