@@ -7,12 +7,13 @@ class MealCreate extends Component {
   constructor(props){
     super(props);
     this.state = {
-      health:[],
-      diet:[],
+      health:null,
+      diet:null,
       dailyCal:null
     }
   }
   handleFormSubmit = (e) =>{
+    const base = this;
     e.preventDefault();
     let user = this.props.user;
     let bmr = null;
@@ -111,8 +112,8 @@ class MealCreate extends Component {
                 '1d2082cd49bb105869f81757b0cb92fb',
                 [parseInt(dailyCal * 0.25 - 100), parseInt(dailyCal * 0.25 + 50)],
                 [0, 100],/*num items to be req*/
-                ['alcohol-free'],/*keep alcohol free & insert health restrictions after it.*/
-                'balanced',/*diet type*/
+                [base.state.health],/*keep alcohol free & insert health restrictions after it.*/
+                base.state.diet,/*diet type*/
                 reslv //gets fired when request is finished.
               )
             });
@@ -196,6 +197,23 @@ class MealCreate extends Component {
     //only take numbers as input
     this.setState({dailyCal:parseInt(e.target.value.replace(/[^0-9.]/g, "")||0)});
   }
+  handleDropdownChange = (e) =>{
+    /* CODE FOR HANDLING ITEMS AS AN ARRAY ( MULTIPLE ITEM CHOICES ) */
+    // let elName = e.target.getAttribute("name");
+    // let sArr = this.state[elName];
+    // if(sArr.indexOf(e.target.value) < 0){
+    //   //add item to state
+    //   sArr.push(e.target.value);
+    //   this.setState({[elName]:sArr});
+    // }else{
+    //   //remove item from state
+    //   this.setState({[elName]:sArr.splice(sArr.indexOf(e.target.value),1)});
+    // }
+    /* Code for handling single item selections */ 
+    let elName = e.target.getAttribute("name");
+    this.setState({[elName]:e.target.value});
+    console.log(this.state.diet,"/ ",this.state.health);
+  }
   render() {
     const user = this.props.user;
     if(user !== null && typeof user !== "undefined"){
@@ -207,7 +225,7 @@ class MealCreate extends Component {
           <br />
             <div className="diet-input-wrapper">
               <label className="diet-label">Diet Type : </label>
-              <select onChange={this.handleDropdownChange} className="diet-dropdown" name="diet">
+              <select onChange={this.handleDropdownChange} value={this.state.diet} className="diet-dropdown" name="diet">
                 <option value="balanced">Balanced</option>
                 <option value="high-fiber">High-Fiber</option>
                 <option value="high-protein">High-Protein</option>
@@ -221,7 +239,8 @@ class MealCreate extends Component {
             <br />
             <div className="health-input-wrapper">
               <label className="health-label">Health & Diet Restrictions: </label>
-              <select onChange={this.handleDropdownChange} className="health-dropdown" name="health">
+              <select onChange={this.handleDropdownChange} value={this.state.health} className="health-dropdown" name="health">
+                <option value="alcohol-free">Alcohol-free</option>
                 <option value="celery-free">Celery-free</option>
                 <option value="crustacean-free">Crustacean-free</option>
                 <option value="dairy-free">Dairy</option>

@@ -21,7 +21,6 @@ body {
     bottom: 0;
     height: 20px;
     width: 100%;
-    position: absolute;
 }
 
 /*forms*/
@@ -346,12 +345,14 @@ tr{
   width: 30%;
 }
 .submit-meal-plan{
-  background: transparent;
-  border: 1px solid grey;
   position: absolute;
   right: 0;
   width: unset;
   padding: .5em 1.5em;
+  bottom: 0;
+  margin-bottom: 1em;
+  border: 1px solid grey;
+  background-color: transparent;
 }
 /* end add meal page */
 
