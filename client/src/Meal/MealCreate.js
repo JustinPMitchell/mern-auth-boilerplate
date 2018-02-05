@@ -183,6 +183,7 @@ class MealCreate extends Component {
             })
             .then((result) => {
               console.log(result);
+              window.location.href="/";
             });
           break;
         }

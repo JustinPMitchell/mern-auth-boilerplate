@@ -50,12 +50,12 @@ var userSchema = new mongoose.Schema({
   meals: {
     end: {
       type: String,
-      required: true
+      required: false
     },
     //takes in the entire string of 21 meals
     mealdata: {
       type: String,
-      required: true
+      required: false
     }
   }
 });
