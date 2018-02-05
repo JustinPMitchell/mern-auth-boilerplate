@@ -1,4 +1,4 @@
-#Chomper
+##Chomper
 
 ![picture](./client/src/images/chomper-profile.png)
 
