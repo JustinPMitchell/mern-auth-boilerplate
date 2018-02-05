@@ -67,8 +67,10 @@ heartRateChange(e){
   render() {
     return (
       <div className="HeartRate">
-        <h2>Heart</h2>
-        <h3>{this.state.name} Heart Rate: {Math.round((220 - this.props.age) * this.state.multiplier)}</h3>   
+        <h2 className="profile-title">Heart</h2>
+        <p>Know your heartrate: </p>
+        <a href="https://www.dignityhealth.org/articles/finding-your-pulse-is-the-first-step-to-calculate-heart-rate">Heart Rate</a>
+        <h3>{this.state.name} Heart Rate: {Math.round((220 - this.props.age) * this.state.multiplier)} bpm</h3>   
         <canvas id="c" width="500" height="200" ref="chart"></canvas>
         <div className="heart-rate-links">
           <a onClick={this.heartRateChange} name="0.4" className="Resting">Resting</a>

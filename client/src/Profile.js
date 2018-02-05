@@ -122,10 +122,14 @@ class Profile extends Component {
           </div>
           <h2>{this.props.user.name}</h2>   
           <hr/>      
-          <h4>Your BMR: { Math.round(this.state.bmr) } calories</h4>
+          <h4 className="profile-title">Your BMR: { Math.round(this.state.bmr) } calories</h4>
+          <p>an estimate of the amount of calories your body can burn at rest: </p>
+          <a href="https://www.diabetes.co.uk/bmr-calculator.html">BMR</a>
           <h4>Recommendended Intake: { Math.round(this.state.calorie) } calories</h4>
           <hr/>
-          <h2>Macros</h2>
+          <h2 className="profile-title">Macros</h2>
+          <p>the main nutrients that make up the food we eat: </p>
+          <a href="http://www.kylehuntfitness.com/how-to-calculate-calorie-and-macronutrient-requirements/">Macronutrients</a>
           <table class="table table-stripe">
             <thead>
               <tr>
@@ -139,9 +143,7 @@ class Profile extends Component {
 {/*                    counld light these up when someone is within the recc.
 */}                 <h2>Goals</h2>
                     <div className="macro-count">
-                      <h3>count(-5%): 250g</h3>
-                      <h3>count : 275g</h3>
-                      <h3>count(+5%): 300g</h3>
+                      <p>Fill your plate with healthy carbs, including leafy greans, whole grains and root veggies. A few good picks: broccoli, asparagus, cauliflower, squash, dark leafy greens, green beans, onions, cucumbers, oatmeal, sweet potatoes, potatoes and quinoa.</p>
                     </div>
                   </div>
                 </th>
@@ -151,13 +153,11 @@ class Profile extends Component {
                   </div>
                   <div className="macro-content"><br/>
                     <h1>{ Math.round(this.state.protein) }g</h1><br/>
-                    <h4>carb intake</h4><br/>
+                    <h4>protein intake</h4><br/>
 {/*                    counld light these up when someone is within the recc.
 */}                 <h2>Goals</h2>
                     <div className="macro-count">
-                      <h3>count(-5%): 50g</h3>
-                      <h3>count : 56g</h3>
-                      <h3>count(+5%): 60g</h3>
+                      <p>You need plenty of protein but don’t go crazy ordering greasy burgers and wings. Instead, choose: fatty fish (salmon, mackerel, herring), cod, lean grass-fed beef, turkey, eggs and nuts.</p>
                     </div>
                   </div>
                 </th>
@@ -167,47 +167,45 @@ class Profile extends Component {
                   </div>
                   <div className="macro-content"><br/>
                     <h1>{ Math.round(this.state.fat) }g</h1><br/>
-                    <h4>carb intake</h4><br/>
+                    <h4>fat intake</h4><br/>
 {/*                    counld light these up when someone is within the recc.
 */}                 <h2>Goals</h2>
                     <div className="macro-count">
-                      <h3>count(-5%): 55g</h3>
-                      <h3>count : 60g</h3>
-                      <h3>count(+5%): 65g</h3>
+                      <p>Getting plenty of healthy fats is important for healthy hormone levels, metabolism, mood vitamin absorption. Foods high in essential fatty acids include: coconut oil, olive oil, avocado, almonds, brazil nuts and macadamia nuts.</p>
                     </div>
                   </div>
                 </th>
               </tr>
             </thead>
           </table>
-          <hr/>
+{/*          <hr/>*/}
 {/* Table for adding information to the database, just here for testing, does not need to be here forever, or could be?? */}
-          <table class="table table-stripe">
-            <thead>
-              <tr>
-                <th>Start</th>
-                <th>End</th>
-                <th>Metadata</th>
-                <th>Delete</th>
-                <th>Edit</th>
-              </tr>
-            </thead>
-            <tbody>
-              {this.state.meals.map(meal => {
-                if(meal.user == that.props.user.email) {
-                  return (
-                    <tr>
-                      <td>{meal.start}</td>
-                      <td>{meal.end}</td>
-                      <td>{meal.mealdata}</td>
-                      <td><button onClick={that.delete.bind(that, meal.id)} class="btn btn-danger">Delete</button></td>
-                      <td><Link to={`/edit/${meal.id}`} class="btn btn-success">Edit</Link>&nbsp;</td>
-                    </tr>
-                  )
-                }
-              })}
-            </tbody>
-          </table>
+{/*          // <table class="table table-stripe">
+          //   <thead>
+          //     <tr>
+          //       <th>Start</th>
+          //       <th>End</th>
+          //       <th>Metadata</th>
+          //       <th>Delete</th>
+          //       <th>Edit</th>
+          //     </tr>
+          //   </thead>
+          //   <tbody>
+          //     {this.state.meals.map(meal => {
+          //       if(meal.user == that.props.user.email) {
+          //         return (
+          //           <tr>
+          //             <td>{meal.start}</td>
+          //             <td>{meal.end}</td>
+          //             <td>{meal.mealdata}</td>
+          //             <td><button onClick={that.delete.bind(that, meal.id)} class="btn btn-danger">Delete</button></td>
+          //             <td><Link to={`/edit/${meal.id}`} class="btn btn-success">Edit</Link>&nbsp;</td>
+          //           </tr>
+          //         )
+          //       }
+          //     })}
+          //   </tbody>
+          // </table>*/}
           <hr/>
           <HeartRate age={this.state.age} />
         </div>);
