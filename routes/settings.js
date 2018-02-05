@@ -24,9 +24,6 @@ router.put('/:id', function(req, res, next) {
 
 /* ADD MEAL PLAN */
 router.post("/addmealplan", function(req,res,next){
-  console.log("REQ BODY IS",req.body);
-  console.log("REQ PARAMS ARE ",req.params);
-  console.log("REQ", req);
     User.update({_id: req.body.userId}, {
       meals:{
         end:req.body.end,

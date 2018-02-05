@@ -7,7 +7,7 @@ class MealItem extends Component {
   render() {
     return (
       <div className="meal-item">
-        <MealDate />
+        <MealDate img={this.props.img} />
         <MealTitle mealName={this.props.mealName} />
         <MealDescription mealCal={this.props.mealCal} mealIngredients={this.props.mealIngredients} />
       </div>
