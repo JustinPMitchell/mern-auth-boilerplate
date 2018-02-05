@@ -47,10 +47,17 @@ var userSchema = new mongoose.Schema({
     type: String,
     required: true
   },
-  meals: [{
-    type: mongoose.Schema.Types.ObjectId,  //REFERENCING :D, I don't think we are using this since each meal is linked to a user email
-    ref: 'Meal'
-  }]
+  meals: {
+    end: {
+      type: String,
+      required: true
+    },
+    //takes in the entire string of 21 meals
+    mealdata: {
+      type: String,
+      required: true
+    }
+  }
 });
 
 // Override 'toJSON' to prevent the password from being returned with the user

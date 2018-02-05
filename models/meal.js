@@ -2,26 +2,21 @@ var mongoose = require('mongoose');
 // import User from './user.js';
 
 var mealSchema = new mongoose.Schema({
-  //takes in starting period
-  start: [{
-    type: String,
-    required: false
-  }],
   //takes in ending period
-  end: [{
+  end: {
     type: String,
-    required: false
-  }],
+    required: true
+  },
   //takes in the entire string of 21 meals
-  mealdata: [{
+  mealdata: {
     type: String,
-    required: false
-  }],
+    required: true
+  },
   //takes in current user
-  user: [{
+  userId: {
     type: String,
-    required: false
-  }]
+    required: true
+  }
 });
 
 // Override 'toJSON' to prevent the password from being returned with the user
@@ -29,10 +24,9 @@ mealSchema.set('toJSON', {
   transform: function(doc, ret, options) {
     var returnJson = {
       id: ret._id,
-      start: ret.start,
       end: ret.end,
       mealdata: ret.mealdata,
-      user: ret.user
+      userId: ret.userId
     };
     return returnJson;
   }

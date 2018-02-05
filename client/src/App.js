@@ -104,7 +104,7 @@ class App extends Component {
               <Route path="/settings" component={
                 () => (<Settings user={this.state.user} setFlash={this.setFlash} updateUser={this.getUser} />)} />
               <Route path="/mealcreate" component={
-                () => (<MealCreate user={this.state.user} setFlash={this.setFlash} />)} />
+                () => (<MealCreate user={this.state.user} dates={this.state.dates} setFlash={this.setFlash} />)} />
             </div>
           </div>
         </Router>

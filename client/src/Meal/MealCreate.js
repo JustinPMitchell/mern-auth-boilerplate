@@ -23,26 +23,182 @@ class MealCreate extends Component {
     }else{
       console.log("need to redirect to settings page so they can update their information");
     }
-  }
-  handleDropdownChange = (e) =>{
-    let elName = e.target.getAttribute("name");
-    let sArr = this.state[elName];
-    if(sArr.indexOf(e.target.value) < 0){
-      //add item to state
-      sArr.push(e.target.value);
-      this.setState({[elName]:sArr});
-    }else{
-      //remove item from state
-      this.setState({[elName]:sArr.splice(sArr.indexOf(e.target.value),1)});
-    }
+    const calFromWorkout = this.state.dailyCal;
+    const dailyCal = bmr + calFromWorkout;
+    const randomNum = (min, max) => {
+      return Math.floor(Math.random() * max + min);
+    };
+    const days = this.props.dates;
+    const reqMeals = {
+      breakfast: [],
+      lunch: [],
+      dinner: [],
+      snack: [],
+    };
+    const mealPlan={
+      mealData:[],
+      expireDate: Date.now()+ (days.length * 86400000)
+    };
+    const getMeals=(search,appId,appKey,calRange,numResultsToDisplay,health,diet,reslv,tmr) => {
+      let query = `q=${search}&app_id=${appId}&app_key=${appKey}&from=${numResultsToDisplay[0]}&to=${numResultsToDisplay[1]}&calories=gte${calRange[0]},lte${calRange[1]}&health=${health[0]}&diet=${diet}`;
+      fetch('https://api.edamam.com/search?' + query)
+        .then(result => {
+          return result.json();
+        })
+        .then(res => {
+          sortMealData(res.hits, health,search);
+          reslv();
+        })
+        .catch(err => {
+          if(tmr<15000 || typeof tmr === "undefined"){
+            console.log("time to wait ", tmr||5000);
+          setTimeout(function(){
+            //handeling capped out api request.
+            getMeals(
+              search,
+              appId,
+              appKey,
+              calRange,
+              numResultsToDisplay,
+              health,
+              diet,
+              reslv,
+              tmr*1.5 || 5000*1.5
+            )
+          },tmr*1.5 || 5000);
+          }else{
+          console.log("catch timed out. switch api key");
+          }
+          console.log(err);
+        });
+    };
+    const sortMealData = (mealData, health,s) => {
+      let m;
+      if (health.length > 1) {
+        health.forEach(healthItem => {
+          m = mealData.map(item => {
+            if (item && item.recipe.healthLabels.indexOf(healthItem) !== -1) {
+              return item;
+            }
+          });
+        });
+      } else {
+        m = mealData;
+      }
+      generateMeals(m,s);
+    };
+    const generateMeals = (mealData,s) => {
+      //randomizing mealdata
+      for (let i = mealData.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [mealData[i], mealData[j]] = [mealData[j], mealData[i]];
+      }
+      while(reqMeals[s].length<days.length){
+        reqMeals[s].push(mealData[0].recipe);
+        mealData.shift();
+      }
+    };
+
+    const buildMealReq = (meals) => {
+      /*add snack later... (other 25%)*/
+      let p = new Promise((resolve, reject) => {
+        (async function loop() {
+          for (let i = 0; i <meals.length; i++) {
+            await new Promise((reslv) => {
+              getMeals(
+                meals[i],
+                '0ab03e5f',
+                '1d2082cd49bb105869f81757b0cb92fb',
+                [parseInt(dailyCal * 0.25 - 100), parseInt(dailyCal * 0.25 + 50)],
+                [0, 100],/*num items to be req*/
+                ['alcohol-free'],/*keep alcohol free & insert health restrictions after it.*/
+                'balanced',/*diet type*/
+                reslv //gets fired when request is finished.
+              )
+            });
+          }
+          resolve(reqMeals);
+        })();
+      });
+      return p;
+    };
+    const handleFinalBuild = (meals) =>{
+      const m = buildMealReq(meals);
+      //fires once request has been complete.
+      m.then( (res) => {
+        switch(true){
+          //handles missing items in api request.
+          case res.breakfast.length !== days.length:
+            console.log("missing breakfast");
+            handleFinalBuild(["breakfast"]);
+          break;
+          case res.lunch.length !== days.length:
+            console.log("missing lunch");
+            handleFinalBuild(["lunch"]);
+          break;
+          case res.dinner.length !== days.length:
+            console.log("missing dinner");
+            handleFinalBuild(["dinner"]);
+          break;
+          default:
+            //console.log("all items were requested",res);
+            //creating meal plan;
+            for(let i=0;i<days.length;i++){
+              mealPlan.mealData.push({
+                day:days[i],
+                breakfast:{
+                  name:reqMeals.breakfast[i].label,
+                  image:reqMeals.breakfast[i].image,
+                  servings:reqMeals.breakfast[i].yield,
+                  calories:reqMeals.breakfast[i].calories,
+                  healthLabels:reqMeals.breakfast[i].healthLabels,
+                  ingredients:reqMeals.breakfast[i].ingredientLines,
+                  nutrition:reqMeals.breakfast[i].digest
+                },
+                  lunch:{
+                  name:reqMeals.lunch[i].label,
+                  image:reqMeals.lunch[i].image,
+                  servings:reqMeals.lunch[i].yield,
+                  calories:reqMeals.lunch[i].calories,
+                  healthLabels:reqMeals.lunch[i].healthLabels,
+                  ingredients:reqMeals.lunch[i].ingredientLines,
+                  nutrition:reqMeals.lunch[i].digest
+                },
+                  dinner:{
+                  name:reqMeals.dinner[i].label,
+                  image:reqMeals.dinner[i].image,
+                  servings:reqMeals.dinner[i].yield,
+                  calories:reqMeals.dinner[i].calories,
+                  healthLabels:reqMeals.dinner[i].healthLabels,
+                  ingredients:reqMeals.dinner[i].ingredientLines,
+                  nutrition:reqMeals.dinner[i].digest
+                }
+              });
+            }
+            axios.post("/settings/addmealplan", {      
+              userId:this.props.user.id,
+              mealData:mealPlan,
+              end:mealPlan.expireDate 
+            })
+            .then((result) => {
+              console.log(result);
+            });
+          break;
+        }
+      })
+      .catch((err) => {
+        console.log("error pulling data from food api",err);
+      });
+      }
+      handleFinalBuild(["breakfast","lunch","dinner"]);
   }
   handleInputChange = (e) =>{
     //only take numbers as input
-    this.setState({dailyCal:parseFloat(e.target.value.replace(/[^0-9.]/g, "")||0)});
+    this.setState({dailyCal:parseInt(e.target.value.replace(/[^0-9.]/g, "")||0)});
   }
   render() {
     const user = this.props.user;
-    if(user !== null && typeof user !== "undefined" && !(user._id)){
+    if(user !== null && typeof user !== "undefined"){
       return (
         <div>
           <form className="create-meal-form" onSubmit={this.handleFormSubmit}>
@@ -101,7 +257,6 @@ class MealCreate extends Component {
               <label className="cal-burned-label">Average calories burned a day from exercise : </label>
               <input onChange={this.handleInputChange} value={this.state.dailyCal} type="text" name="calFromExercise" className="cal-burned-input"/> 
             </div>
-            
             <input type="submit" className="submit-meal-plan"/>
           </form>
         </div>
