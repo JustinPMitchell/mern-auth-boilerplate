@@ -22,4 +22,17 @@ router.put('/:id', function(req, res, next) {
   });
 });
 
+/* ADD MEAL PLAN */
+router.post("/addmealplan", function(req,res,next){
+    User.update({_id: req.body.userId}, {
+      meals:{
+        end:req.body.end,
+        mealdata:JSON.stringify(req.body.mealData)
+      }
+    }, function(err, numberAffected, rawResponse) {
+      if(err) return next(err);
+      res.status(200).send("added meal to db");
+    })
+})
+
 module.exports = router;

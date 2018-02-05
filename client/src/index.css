@@ -21,6 +21,7 @@ body {
     bottom: 0;
     height: 20px;
     width: 100%;
+    position: absolute;
 }
 
 /*forms*/
@@ -194,6 +195,9 @@ tr{
 }
 /* end nav */
 /* start meal component */
+.save-meal-form{
+  border-radius: 0;
+}
 .meal-wrapper{
 
 }
@@ -231,7 +235,7 @@ tr{
 .meal-title-wrapper h1{
   font-weight: 200;
   text-align: center;
-  position: relative;
+  position: absolute;
   margin: 0;
   font-size: 3vmax;
 }
@@ -265,14 +269,25 @@ tr{
   top:-1px;
 }
 
-.meal-info-btn , .change-meal-btn{
+.meal-info-btn{
   display: inline-block;
-  position: relative;
+  position: absolute;
   font-size: 2.5vw;
   border: 1px solid #fff;
-  margin-left: .5em;
   border-bottom: none;
-  bottom: -15vmin;
+  bottom: 0;
+  right:1em;
+  padding: 2%;
+  cursor: pointer;
+} 
+.change-meal-btn{
+  display: inline-block;
+  position: absolute;
+  font-size: 2.5vw;
+  border: 1px solid #fff;
+  border-bottom: none;
+  bottom: 0;
+  left:1em;
   padding: 2%;
   cursor: pointer;
 }
