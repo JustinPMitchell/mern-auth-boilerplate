@@ -7,8 +7,8 @@ class MealCreate extends Component {
   constructor(props){
     super(props);
     this.state = {
-      health:null,
-      diet:null,
+      health:'alcohol-free',
+      diet:'balanced',
       dailyCal:null
     }
   }
@@ -18,9 +18,11 @@ class MealCreate extends Component {
     let user = this.props.user;
     let bmr = null;
     if(user.sex === "male"){
-      bmr = 66 + ( 6.2 * user.weight ) + ( 12.7 * user.height * 12 ) - ( 6.76 * user.age || 25 );
+      //bmr = 66 + ( 6.2 * user.weight ) + ( 12.7 * user.height * 12 ) - ( 6.76 * user.age || 25 );
+      bmr = 66.5 + ( 13.75 * user.weight ) + ( 5.003 * user.height ) - ( 6.755  * user.age || 25 );
     }else if(user.sex === "female"){
-      bmr = 655.1 + ( 4.35 * user.weight ) + ( 4.7 * user.height * 12 ) - ( 4.7 * user.age || 25 );
+      //bmr = 655.1 + ( 4.35 * user.weight ) + ( 4.7 * user.height * 12 ) - ( 4.7 * user.age || 25 );
+      bmr = 655.1 + ( 9.563 * user.weight ) + ( 1.850* user.height ) - ( 4.676 * user.age || 25 )
     }else{
       console.log("need to redirect to settings page so they can update their information");
     }
