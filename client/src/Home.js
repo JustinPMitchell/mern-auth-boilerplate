@@ -5,12 +5,12 @@ class Home extends Component {
   constructor(props){
     super(props);
     this.state = {
-      mealPlan : this.props.meals
+      user : this.props.user
     }
   }
   render(){
-    if(typeof this.state.mealPlan !== "undefined"&& typeof this.state.mealPlan.mealdata !== "undefined"){
-      let data = JSON.parse(this.state.mealPlan.mealdata);
+    if(this.props.user !== null && typeof this.state.user !== "undefined" && typeof this.state.user.meals !== "undefined"){
+      let data = JSON.parse(this.state.user.meals.mealdata);
       data = data.mealData.find(x => x.day === this.props.currentDate);
       return (
         <div className="meal-item-container">

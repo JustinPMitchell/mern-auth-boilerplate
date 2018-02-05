@@ -192,6 +192,9 @@ tr{
 }
 /* end nav */
 /* start meal component */
+.save-meal-form{
+  border-radius: 0;
+}
 .meal-wrapper{
 
 }

@@ -94,7 +94,7 @@ class App extends Component {
             <Nav dates={this.state.dates} dateIndex={this.state.dateIndex} setDateIndex={this.setDateIndex} user={this.state.user} updateUser={this.getUser} />
               <div className="space">
                 <Flash flashType={this.state.flashType} flash={this.state.flash} setFlash={this.setFlash} cancelFlash={this.cancelFlash} />
-                <Route exact path="/" component={() => (<Home meals={this.state.user.meals} currentDate={this.state.dates[this.state.dateIndex]} />)} />
+                <Route exact path="/" component={() => (<Home user={this.state.user} currentDate={this.state.dates[this.state.dateIndex]} />)} />
                 <Route path="/login" component={
                   () => (<Login user={this.state.user} setFlash={this.setFlash} updateUser={this.getUser} />)} />
                 <Route path="/signup" component={
