@@ -9,11 +9,11 @@ class Signup extends Component {
       name: '',
       email: '',
       password: '',
-      height: '',
-      weight: '',
-      sex: '',
+      height: 177,
+      weight: 80,
+      sex: 'male',
       //* add to state
-      dob: '',
+      dob: '01/01/1999',
       exercise: '',
       desire: ''
     }
@@ -101,50 +101,62 @@ class Signup extends Component {
                      onChange={this.handlePasswordChange} />
                  </div>
                  <div className="form-input">
-                  <label for="height">Height:</label>
+                  <label for="height">Height(cm):</label>
                   <input id="height" name="Height"
-                     placeholder="68"
-                     type="height"
+                     placeholder="177"
+                     type="number"
                      value={this.state.height}
                      onChange={this.handleHeightChange} />
                  </div>
                  <div className="form-input">
-                  <label for="weight">Weight:</label>
+                  <label for="weight">Weight(kg):</label>
                   <input id="weight" name="Weight"
                      placeholder="80"
-                     type="weight"
+                     type="number"
                      value={this.state.weight}
                      onChange={this.handleWeightChange} />
                  </div>
                  <div className="form-input">
                   <label for="sex">Sex:</label>
+                  <select id="sex" name="Sex" onChange={this.handleSexChange} className="sex-dropdown">
+                    <option value="male">male</option>
+                    <option value="female">female</option>
+                    <option value="other">other</option>                    
+                  </select>
+                 {/* <label for="sex">Sex:</label>
                   <input id="sex" name="Sex"
                      placeholder="male"
                      type="sex"
                      value={this.state.sex}
-                     onChange={this.handleSexChange} />
+                     onChange={this.handleSexChange} /> */}
                  </div>
-                {/** adds div for form sign-up*/}
                 <div className="form-input">
                   <label for="dob">Date of Birth:</label>
                   <input id="dob" name="dob"
-                       placeholder="05/06/1990"
+                       type="date"
+                       placeholder="01/01/1999"
                        value={this.state.dob}
                        onChange={this.handleDobChange} />
                 </div>
                 <div className="form-input">
                   <label for="exercise">Exercise:</label>
-                  <input id="exercise" name="exercise"
-                       placeholder="not at all"
-                       value={this.state.exercise}
-                       onChange={this.handleExerciseChange} />
+                  <select id="exercise" name="exercise" onChange={this.handleExerciseChange} className="exercise-dropdown">
+                    <option value="not at all">not at all</option>
+                    <option value="little">little</option>
+                    <option value="moderate">moderate</option>
+                    <option value="active">active</option>
+                    <option value="extra active">extra active</option>                                        
+                    <option value="other">other</option>                         
+                  </select>
                 </div>
                 <div className="form-input">
                   <label for="desire">Desire:</label>
-                  <input id="desire" name="desire"
-                       placeholder="loose weight"
-                       value={this.state.desire}
-                       onChange={this.handleDesireChange} />
+                  <select id="desire" name="desire" onChange={ this.handleDesireChange } className="desire-dropdown">
+                    <option value="fat loss">fat loss</option>
+                    <option value="maintenance">maintenance</option>
+                    <option value="build muscle">build muscle</option>
+                    <option value="other">other</option>                      
+                  </select>
                 </div>                                                                     
                 <button type="submit" className="btn-primary">SignUp</button>
               </form>);

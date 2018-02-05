@@ -12,7 +12,7 @@ router.post('/login', function(req, res, next) {
   var hashedPass = '';
   var passwordMatch = false;
   // look up user
-  User.findOne({email: req.body.email}, function(err, user) {
+  User.findOne({ email: req.body.email }, function(err, user) {
     if(!user || !user.password){
       return res.status(403).send({
         error: true,
