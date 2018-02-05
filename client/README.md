@@ -1,7 +1,6 @@
 # Chomper
 
-![picture](./assets/img/dino-dynasty-title-screen.png)
-![picture](./assets/img/dino-dynasty-game-play.png)
+![picture](./client/src/images/chomper-profile.png)
 
 Make a meal plan for a week with a few clicks.  Discover your recommended macronutrient levels, by entering in your personal information.
 
@@ -66,8 +65,10 @@ Have an interactive front-end, preferably using a modern front-end framework
 
 ## Authors
 
-* **Tai Bayard** - *API management, styling, database handling* - [taibayard](https://github.com/taibayard)
-* **Justin Mitchell** - *database management, user information, route handling* - [JustinPMitchell](https://github.com/JustinPMitchell)
+* **Tai Bayard** - *API management, styling, database handling, BLUE* - [taibayard](https://github.com/taibayard)
+* **Justin Mitchell** - *database management, user information, route handling, RED* - [JustinPMitchell](https://github.com/JustinPMitchell)
+
+![picture](./client/src/images/trello.png)
 
 ## Acknowledgments
 
