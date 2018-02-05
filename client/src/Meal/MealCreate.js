@@ -7,8 +7,8 @@ class MealCreate extends Component {
   constructor(props){
     super(props);
     this.state = {
-      health:null,
-      diet:null,
+      health:'alcohol-free',
+      diet:'balanced',
       dailyCal:null
     }
   }
