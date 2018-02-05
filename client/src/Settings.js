@@ -14,7 +14,6 @@ class Settings extends Component {
     axios.get('/settings/'+this.props.user.id)
       .then(res => {
         this.setState({ user: res.data });
-        console.log(this.state.user);
       });
   }
 
@@ -30,10 +29,8 @@ class Settings extends Component {
       const { height, weight, sex, exercise, desire } = this.state.user;
       axios.put('/settings/'+this.props.user.id, { height, weight, sex, exercise, desire })
       .then((result) => {
-        console.log('promise is reached');
         window.location.href = "/profile";
         if(this.props.router){
-          console.log('if statement is reached');
           this.props.router.push("/profile");
         }
         this.props.updateUser();

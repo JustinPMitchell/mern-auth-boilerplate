@@ -1,6 +1,7 @@
 .App{
   background-color:#fdfdfd;
 }
+
 body {
   margin: 0;
   padding: 0;
@@ -10,10 +11,16 @@ body {
 .no-flash{
   display: none;
 }
+
 .footer{
-  position: fixed;
-  bottom: 0;
-  height: 20px;
+    background-color: #bcbcbc33;
+    border-top: 1px solid #E7E7E7;
+    text-align: center;
+    padding: 20px 0;
+    left: 0;
+    bottom: 0;
+    height: 20px;
+    width: 100%;
 }
 
 /*forms*/
@@ -369,3 +376,38 @@ tr{
 }
 
 
+/*ECG*/
+#c{
+    background: -webkit-linear-gradient(left, white 0%, red 100%);
+    background-repeat: repeat-x;
+    border-radius: 100%;
+    -webkit-animation-name: linemove;
+    -webkit-animation-duration: 5s;
+    -webkit-animation-iteration-count: infinite;
+    -webkit-animation-timing-function: linear;
+    width: 50%;
+    margin: 0 25%;
+}
+
+@-webkit-keyframes linemove {
+    from {
+        background-position-x: 0;
+    }
+    to {
+        background-position-x: 500px;
+    }
+}
+
+.heart-rate-links{
+  text-align: center;
+  padding: 10px 0 0 0;
+}
+
+.heart-rate-links a{
+  padding: 10px;
+}
+
+.HeartRate h3{
+  text-align: center;
+}
+/*end ECG*/

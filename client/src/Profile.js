@@ -26,20 +26,16 @@ class Profile extends Component {
     axios.get('/api/meal')
       .then(res => {
         this.setState({ meals: res.data });
-        console.log(this.state.meals);
       })
     var that = this;
 
 
 
     var calculateBmr = () => {
-      console.log('bmr works');   
 
       function calculateAge() { // dob is a date
         var dob = new Date(that.props.user.dob);
-        console.log(dob);
         var ageDifMs = Date.now() - dob.getTime();
-        console.log("Age Difference: " + ageDifMs);
         var ageDate = new Date(ageDifMs); // miliseconds from epoch
         return Math.abs(ageDate.getUTCFullYear() - 1970);
       }
@@ -58,7 +54,6 @@ class Profile extends Component {
         bmr = ((66.47 + (13.7 * this.props.user.weight) + (5 * this.props.user.height) - (6.8 * age)) + (655.1 + (9.6 * this.props.user.weight) + (1.8 * this.props.user.height) - (4.7 * age))) / 2;
         this.setState({ bmr: bmr });      
       }
-      console.log('this is the bmr: ', bmr);
       return bmr;
     }
 
@@ -76,7 +71,6 @@ class Profile extends Component {
       } else {
         bmr *= 1.375;
       }
-      console.log('user desires to: ', this.props.user.desire);
       if(this.props.user.desire === 'fat loss') {
         bmr *= .90;
         this.setState({ calorie: bmr });
@@ -96,8 +90,6 @@ class Profile extends Component {
         this.setState({ protein: (bmr * .37) / 4 });
         this.setState({ fat: (bmr * .17) / 9 });
       }
-
-      console.log('this is the recommended calorie count: ', bmr);
       return bmr;
     }
 
@@ -106,7 +98,6 @@ class Profile extends Component {
   }
 
   delete(id){
-    console.log(id);
     axios.delete('/api/meal/'+id)
       .then((result) => {
 
@@ -204,9 +195,6 @@ class Profile extends Component {
             <tbody>
               {this.state.meals.map(meal => {
                 if(meal.user == that.props.user.email) {
-                  console.log('this is the name of the meal ', that.state.meals[0].name);
-                  console.log('this is the id from the meal ', meal.id);
-                  console.log('this is the id from the user ', that.props.user.id);
                   return (
                     <tr>
                       <td>{meal.start}</td>
