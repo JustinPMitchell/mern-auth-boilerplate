@@ -152,6 +152,7 @@ tr{
 /*logo*/
 .logo{
   width: 100%;
+  margin: 0 -35px;
 }
 .default-nav-logo{
   position: absolute;
