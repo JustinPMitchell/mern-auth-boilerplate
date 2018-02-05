@@ -117,9 +117,10 @@ tr{
 }
 .macro-count{
   font-size: 10px;
-  text-align: right;
+  text-align: left;
   margin: 20px -1px 20px 0;
-  line-height: 3px;
+  overflow: scroll;
+  height: 48px;
 }
 
 /*start nav */
@@ -151,6 +152,7 @@ tr{
 /*logo*/
 .logo{
   width: 100%;
+  margin: 0 -35px;
 }
 .default-nav-logo{
   position: absolute;
@@ -316,7 +318,20 @@ tr{
 .profile-picture-buttons-wrapper{
   text-align: center;
 }
+.Profile p, .HeartRate p{
+  font-size: 10px;
+  margin: 0 0 0 0;
+  display: inline;
+}
+.Profile a, .HeartRate a{
+  font-size: 10px;
+  color: #c67100;
+}
+.profile-title{
+  margin-bottom: 0;
+}
 /*end profile page*/
+
 /* add meal page*/
 .create-meal-form{
   background-color: transparent;
@@ -421,6 +436,7 @@ tr{
 
 .heart-rate-links a{
   padding: 10px;
+  font-size: 16px;
 }
 
 .HeartRate h3{

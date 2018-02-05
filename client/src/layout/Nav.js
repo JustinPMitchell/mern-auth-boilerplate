@@ -89,7 +89,7 @@ class Nav extends Component {
     return(
         <div>
           <nav className="default-nav">
-            <li className="default-nav-logo"><img className="logo" src={logo}></img></li>
+            <li className="default-nav-logo"><a href="/"><img className="logo" src={logo}></img></a></li>
             <ul className="default-nav-item-wrapper">
               <li className="default-nav-item"><a href="/">Home</a></li>
               {links}
