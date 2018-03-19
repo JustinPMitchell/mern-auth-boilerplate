@@ -391,6 +391,9 @@ tr{
   .macro-count{
     margin: 20px -1px 20px 5px;
   }
+  .title-background{
+    height: 700px;
+  }
 
   /*removing mobile stuff for desktop view*/
   .mobile-nav{
@@ -443,3 +446,7 @@ tr{
   text-align: center;
 }
 /*end ECG*/
+
+.title-background{
+  width: 100%;
+}

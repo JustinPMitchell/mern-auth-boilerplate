@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
 import MealWrapper from './Meal/MealWrapper.js';
+import title from './images/title.jpg';
+
+
 
 class Home extends Component {
   constructor(props){
@@ -23,7 +26,7 @@ class Home extends Component {
       console.log("handle no meal data");
       return (
         <div className="meal-item-container">
-          Create meal plan
+          <img className="title-background" src={title}></img>
         </div>
       );
     }
