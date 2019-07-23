@@ -76,7 +76,7 @@ class Signup extends Component {
       return (<Redirect to="/profile" />);
     }
     else {
-      form = (<form onSubmit={this.handleSubmit}>
+      form = (<form className="signup-form" onSubmit={this.handleSubmit}>
                 <div className="form-input">
                   <label for="name">Name:</label>
                   <input id="name" name="Name"
@@ -158,7 +158,7 @@ class Signup extends Component {
                     <option value="other">other</option>                      
                   </select>
                 </div>                                                                     
-                <button type="submit" className="btn-primary">SignUp</button>
+                <button type="submit" className="signup-button btn-primary">SignUp</button>
               </form>);
     }
     return (

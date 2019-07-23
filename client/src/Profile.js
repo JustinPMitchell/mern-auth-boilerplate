@@ -30,6 +30,9 @@ class Profile extends Component {
     var that = this;
     console.log(that.state.meals);
 
+    document.getElementsByClassName("mobile-nav")[0].style.display = "none";
+
+
 
 
     var calculateBmr = () => {

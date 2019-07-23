@@ -217,6 +217,7 @@ class MealCreate extends Component {
     this.setState({[elName]:e.target.value});
     console.log(this.state.diet,"/ ",this.state.health);
   }
+
   render() {
     const user = this.props.user;
     if(user !== null && typeof user !== "undefined"){

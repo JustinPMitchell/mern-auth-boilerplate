@@ -14,6 +14,14 @@ class Home extends Component {
       user : this.props.user
     }
   }
+
+  componentDidMount() {
+    document.getElementsByClassName("mobile-nav")[0].style.display = "none";
+    if(this.props.user !== null && typeof this.state.user !== "undefined" && typeof this.state.user.meals !== "undefined") {
+      document.getElementsByClassName("mobile-nav")[0].style.display = "block";
+    }
+  }
+
   render(){
     if(this.props.user !== null && typeof this.state.user !== "undefined" && typeof this.state.user.meals !== "undefined"){
       let data = JSON.parse(this.state.user.meals.mealdata);

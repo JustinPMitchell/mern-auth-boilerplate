@@ -37,6 +37,15 @@ label{
   color: black;
   font-size: 18px;
 }
+.signup-form {
+  position: relative;
+  margin: 60px auto;
+  width: 440px;
+}
+.signup-button {
+  position: absolute;
+  left: unset;
+}
 .form-wrapper {
   text-align: center;
 }
@@ -496,43 +505,49 @@ tr{
   .logo {
     display: none;
   }
-.meal-description-wrapper {
-    display: block;
-    width: 380px;
-    background-color: #cee8f5;
-    margin: -4px auto;
-    position: inherit;
-}
-.meal-item {
-    width: 99%;
-    display: inline-block;
-    height: 30vmax;
-    position: relative;
-    margin-top: 0;
-    overflow: hidden;
-    text-align: center;
-}
-  .meal-img, .meal-title-wrapper {
-    display: inline-block;
-    height: 50%;
-    width: 150px;
-    object-fit: cover;
+  .meal-description-wrapper {
+      display: block;
+      width: 380px;
+      background-color: #cee8f5;
+      margin: -4px auto;
+      position: inherit;
   }
-.meal-title-wrapper {
-    width: 230px;
-    position: relative;
-    left: 0;
-    background-color: #6caac72e;
-}
-.meal-description {
-    height: 13vmax;
-    text-align: left;
-    margin: -4px 8px 0 0;
-    position: absolute;
-    font-size: 1.5vmax;
-    overflow: scroll;
-    padding: 10px;
-}
+  .meal-item {
+      width: 99%;
+      display: inline-block;
+      height: 30vmax;
+      position: relative;
+      margin-top: 0;
+      overflow: hidden;
+      text-align: center;
+  }
+    .meal-img, .meal-title-wrapper {
+      display: inline-block;
+      height: 50%;
+      width: 150px;
+      object-fit: cover;
+    }
+  .meal-title-wrapper {
+      width: 230px;
+      position: relative;
+      left: 0;
+      background-color: #6caac72e;
+  }
+  .meal-description {
+      height: 13vmax;
+      text-align: left;
+      margin: -4px 8px 0 0;
+      position: absolute;
+      font-size: 1.5vmax;
+      overflow: scroll;
+      padding: 10px;
+  }
+  .signup-form {
+    width: unset;
+  }
+  .signup-button {
+    left: 40px;
+  }
 }
 
 
