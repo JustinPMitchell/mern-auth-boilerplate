@@ -14,6 +14,15 @@ Have an interactive front-end, preferably using a modern front-end framework
 * Have a visually impressive design to kick your portfolio up a notch and have something to wow future clients & employers
 * Be deployed online so it's publicly accessible
 
+## Installation
+
+* Fork and clone repo
+* Add a .env file in the root directory with a JWT_SECRET of your choosing
+* Execute npm install --save in the root and client directory
+* Execute npm run build in the client directory
+* Start mongo with mongod
+* Execute npm run start in the root directory
+
 ## Approach Taken
 
 * Researched MongoDB and React Lifecycle Methods
