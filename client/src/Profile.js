@@ -28,12 +28,14 @@ class Profile extends Component {
         this.setState({ meals: res.data });
       })
     var that = this;
+    console.log(that.state.meals);
 
 
 
     var calculateBmr = () => {
 
       function calculateAge() { // dob is a date
+        console.log(that.props.user);
         var dob = new Date(that.props.user.dob);
         var ageDifMs = Date.now() - dob.getTime();
         var ageDate = new Date(ageDifMs); // miliseconds from epoch

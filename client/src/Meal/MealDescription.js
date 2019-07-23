@@ -9,9 +9,10 @@ class MealDescription extends Component {
           <input value="Save" type="submit" class="save-meal-btn" />
         </form>
         <p className="meal-description">
-          Calories : {this.props.mealCal},
+          <b>Calories:</b> {this.props.mealCal}
           <br />
-          Ingredients : {this.props.mealIngredients}
+          <br />
+          <b>Ingredients:</b> {this.props.mealIngredients}
         </p>
       </div>
     );

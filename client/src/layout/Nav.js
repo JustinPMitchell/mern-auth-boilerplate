@@ -3,7 +3,7 @@ import Logout from '../auth/Logout.js';
 import { Link } from 'react-router-dom';
 
 //images
-import logo from '../images/carrot-filled.svg';
+import logo from '../images/pineapple.png';
 
 
 var xDown = null;                                                        
@@ -75,6 +75,7 @@ class Nav extends Component {
     if(this.props.user){
       links = (
         <span>
+          <Link to="/">Plan</Link>
           <Link to="/profile">Profile</Link>
           <Logout updateUser={this.props.updateUser} />
         </span>);
@@ -82,8 +83,6 @@ class Nav extends Component {
     else {
       links = (
         <span>
-          <li className="default-nav-item"><Link to="/login">Login</Link></li>
-          <li className="default-nav-item"><Link to="/signup">Sign Up</Link></li>
         </span>);
     }
     return(
@@ -91,7 +90,6 @@ class Nav extends Component {
           <nav className="default-nav">
             <li className="default-nav-logo"><a href="/"><img className="logo" src={logo}></img></a></li>
             <ul className="default-nav-item-wrapper">
-              <li className="default-nav-item"><a href="/">Home</a></li>
               {links}
             </ul>
           </nav>

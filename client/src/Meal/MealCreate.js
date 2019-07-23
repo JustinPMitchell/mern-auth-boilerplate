@@ -223,6 +223,7 @@ class MealCreate extends Component {
       return (
         <div>
           <form className="create-meal-form" onSubmit={this.handleFormSubmit}>
+          <div className="create-meal-plan-title">Create Meal Plan</div>
           <br />
           <hr />
           <br />
@@ -276,17 +277,20 @@ class MealCreate extends Component {
             <hr />
             <br />
             <div className="cal-burned-wrapper">
-              <label className="cal-burned-label">Average calories burned a day from exercise : </label>
+              <label className="cal-burned-label">Calories Burned a Day : </label>
               <input onChange={this.handleInputChange} value={this.state.dailyCal} type="text" name="calFromExercise" className="cal-burned-input"/> 
             </div>
-            <input type="submit" className="submit-meal-plan"/>
+            <br />
+            <hr />
+            <br />
+            <input type="submit" className="submit-meal-plan" value="Create Plan"/>
           </form>
         </div>
       );
     }else{
       //invalid user
       return(
-        <Redirect to="/login"/>
+        <Redirect to="/"/>
       );
     }
   }

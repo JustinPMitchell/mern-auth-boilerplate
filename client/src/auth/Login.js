@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Redirect } from 'react-router-dom';
+import { Redirect, Link } from 'react-router-dom';
 import axios from 'axios';
 
 class Login extends Component {
@@ -28,6 +28,7 @@ class Login extends Component {
       localStorage.setItem('mernToken', result.data.token);
       this.setState({ success: true });
       this.props.updateUser();
+      window.location.href = "/profile";
     }).catch((error) => {
       console.log('error returned', error.response.data);
       this.props.setFlash('error', error.response.status + ': ' + (error.response.data && error.response.data.error ? error.response.data.message : error.response.statusText));
@@ -36,29 +37,31 @@ class Login extends Component {
 
   render() {
     let form = '';
-    if(this.props.user){
+    if(this.props.user && this.props.user !== null){
+      console.log("redirecting to profile with this user: ", this.props.user);
       return (<Redirect to="/profile" />);
     }
     else {
-      form = (<form onSubmit={this.handleSubmit}>
+      form = (<form className="form-wrapper" onSubmit={this.handleSubmit}>
                 <div className="form-input">
-                  <label for="email">Email:</label>
+                  <label for="email"></label>
                   <input id="email" name="Email"
-                       placeholder="Enter your email"
+                       placeholder="Email"
                        value={this.state.email}
                        onChange={this.handleEmailChange}
                   />
                 </div>
                 <div className="form-input">
-                  <label for="password">Password:</label>
+                  <label for="password"></label>
                   <input id="password" name="Password"
-                       placeholder="Enter your password"
+                       placeholder="Password"
                        type="password"
                        value={this.state.password}
                        onChange={this.handlePasswordChange}
                   />
                 </div>
                 <button type="submit" className="btn-primary">Login</button>
+                <button className="btn-primary sign-up-button"><Link to="/signup">Sign Up</Link></button>
               </form>);
     }
     return (
