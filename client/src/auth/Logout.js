@@ -2,9 +2,7 @@ import React, { Component } from 'react';
 
 class Logout extends Component {
   handleLogout = (e) => {
-    //Delete token from local storage
     localStorage.removeItem('mernToken');
-    //Go back to home page
     this.props.updateUser();
   }
 
